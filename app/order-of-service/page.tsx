@@ -4,8 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, MapPin, Clock, Calendar, Play, ChevronDown, ChevronUp, Music, BookOpen, Mic } from "lucide-react"
-import { useState } from "react"
+import { ArrowLeft, MapPin, Clock, Calendar, Play, Pause, ChevronDown, ChevronUp, Music, BookOpen, Mic } from "lucide-react"
+import { useState, useRef, useEffect } from "react"
  
 interface ServiceItem {
   id: string
@@ -80,31 +80,10 @@ Chorus`,
   {
     id: "Memories shared of Maureen",
     title: "Memories shared of Maureen",
-    subtitle: "Phil, Janine & Ian. Phil reads poem - More of Mor",
+    subtitle: "Phil Munns reads poem - More of Mor",
     time: "unknown",
     type: "tribute",
     audioUrl: "/Phil Munns reads poem - More of Mor.m4a",
-  },
-   {
-    id: "Memories shared of Maureen",
-    title: "Memories shared of Maureen",
-    subtitle: "Melinda Lumb shares memories of Aunty Maureen",
-    time: "unknown",
-    type: "tribute",
-  },
-  {
-    id: "Scripture Reading",
-    title: "Scripture reading - Matthew chapter 25:14-30",
-    subtitle: "Ashlyn Orpen",
-    time: "unknown",
-    type: "general",
-  },
-  {
-    id: "Message",
-    title: "Message",
-    subtitle: "Kathy Bates",
-    time: "unknown",
-    type: "general",
   },
   {
     id: "song-3",
@@ -166,6 +145,27 @@ Refrain`,
 function InteractiveServiceItem({ item }: { item: ServiceItem }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // Initialize audio element when component mounts
+  useEffect(() => {
+    if (item.type === "tribute" && item.audioUrl) {
+      audioRef.current = new Audio(item.audioUrl);
+      
+      // Listen for when audio ends to reset the playing state
+      audioRef.current.addEventListener('ended', () => {
+        setIsPlaying(false);
+      });
+    }
+
+    // Cleanup function to pause and remove audio when component unmounts
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, [item.audioUrl, item.type]);
 
   const getIcon = () => {
     switch (item.type) {
@@ -181,14 +181,14 @@ function InteractiveServiceItem({ item }: { item: ServiceItem }) {
   };
 
   const handlePlay = () => {
-    if (item.type === "tribute" && item.audioUrl) {
-      const audio = new Audio(item.audioUrl);
+    if (audioRef.current) {
       if (isPlaying) {
-        audio.pause();
+        audioRef.current.pause();
+        setIsPlaying(false);
       } else {
-        audio.play();
+        audioRef.current.play();
+        setIsPlaying(true);
       }
-      setIsPlaying(!isPlaying);
     }
   };
 
@@ -209,7 +209,7 @@ function InteractiveServiceItem({ item }: { item: ServiceItem }) {
                 onClick={handlePlay}
                 className="h-6 px-2 text-primary hover:text-primary/80"
               >
-                <Play className="w-3 h-3" />
+                {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
               </Button>
             )}
             {canExpand && (
@@ -321,7 +321,7 @@ export default function OrderOfServicePage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
-                  <p className="font-semibold text-foreground">Stephen Bates</p>
+                  <p className="font-semibold text-foreground">Pastor Glenn Stanley</p>
                 </div>
               </CardContent>
             </Card>
