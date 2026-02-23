@@ -80,7 +80,7 @@ export default function AddMemoriesPage() {
         "More detailed description",
       imageUrl: "/08_Gary in Cadets.jpg",
       media: [
-        { type: "image", url: "/08_Gary in Cadets.jpg", title: "Gary in Cadets" },
+        { type: "image", url: "funeral book image 1.jpg", title: "family image 1" },
         { type: "image", url: "02_Gary_11ish_with family.jpg", title: "Gary with Family" },
         { type: "video", url: "https://streamable.com/axzalj", title: "video of pictures"},
       ],
