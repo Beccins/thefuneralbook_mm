@@ -321,7 +321,7 @@ export default function OrderOfServicePage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
-                  <p className="font-semibold text-foreground">Pastor Glenn Stanley</p>
+                  <p className="font-semibold text-foreground">Stephen Bates</p>
                 </div>
               </CardContent>
             </Card>
