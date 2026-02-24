@@ -97,9 +97,9 @@ export default function AddMemoriesPage() {
         "Shorter description of the memory",
       detailedStory:
         "More detailed description",
-      imageUrl: "/08_Gary in Cadets.jpg",
+      imageUrl: "mor-in-pink-paisley", title: "mor munns"}
       media: [
-        { type: "image", url: "funeral book image 1.jpg", title: "family image 1" },
+        { type: "image", url: "mor-munns-funeral-book-cover-image.jpg", title: "mor munns" },
         { type: "image", url: "02_Gary_11ish_with family.jpg", title: "Gary with Family" },
         { type: "video", url: "https://streamable.com/axzalj", title: "video of pictures"},
       ],
