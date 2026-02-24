@@ -62,7 +62,6 @@ const carouselPhotos = [
   { url: "/mor-helping-out-at-church.jpg", caption: "Mor helping out at church" },
   { url: "/mor-in-pink-paisley.jfif", caption: "Mor in pink paisley" },
   { url: "/mor-making-toys-for-less-fortunate-kids.jpg", caption: "Mor making toys for less fortunate kids" },
-  { url: "/mor-munns-funeral-book-cover-image.jpg", caption: "Mor Munns" },
   { url: "/rylie-reaching-for-mor.jpg", caption: "Rylie reaching for Mor" },
   { url: "/young-mor-with-bob-haircut.jpg", caption: "Young Mor with bob haircut" },
 ];
