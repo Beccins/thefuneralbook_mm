@@ -25,8 +25,9 @@ import {
   Share2,
   Facebook,
   Instagram,
+  Pause,
 } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 
 interface MediaItem {
@@ -51,6 +52,21 @@ interface Memory {
   musicPlaylist?: { title: string; spotifyId: string }[]
 }
 
+// Photo carousel data
+const carouselPhotos = [
+  { url: "/delivering-mors-eulogy.jpg", caption: "Delivering Mor's eulogy" },
+  { url: "/family-at-mors-cremation.jpg", caption: "Family at Mor's cremation" },
+  { url: "/grandkids-with-mor.jpg", caption: "Grandkids with Mor" },
+  { url: "/josh-taylor-presents-mors-cremation-service.jpg", caption: "Josh Taylor presents Mor's cremation service" },
+  { url: "/kids-partners-mors-birthday.jpg", caption: "Kids and partners at Mor's birthday" },
+  { url: "/mor-helping-out-at-church.jpg", caption: "Mor helping out at church" },
+  { url: "/mor-in-pink-paisley.jpg", caption: "Mor in pink paisley" },
+  { url: "/mor-making-toys-for-less-fortunate-kids.jpg", caption: "Mor making toys for less fortunate kids" },
+  { url: "/mor-munns-funeral-book-cover-image.jpg", caption: "Mor Munns" },
+  { url: "/rylie-reaching-for-mor.jpg", caption: "Rylie reaching for Mor" },
+  { url: "/young-mor-with-bob-haircut.jpg", caption: "Young Mor with bob haircut" },
+];
+
 export default function AddMemoriesPage() {
   const [memoryForm, setMemoryForm] = useState({
     name: "",
@@ -66,6 +82,10 @@ export default function AddMemoriesPage() {
   const [expandedMemory, setExpandedMemory] = useState<Memory | null>(null)
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0)
   const [playingSpotify, setPlayingSpotify] = useState<string | null>(null)
+  
+  // Carousel state
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  const [isCarouselPlaying, setIsCarouselPlaying] = useState(true);
 
   const [memories, setMemories] = useState<Memory[]>([
     {
@@ -87,7 +107,7 @@ export default function AddMemoriesPage() {
       date: "submission date",
       timeframe: "memory date",
       musicPlaylist: [
-        { title: "Can't Help Myself - The Four Tops", spotifyId: "6b6IMqP565TbtFFZg9iFf3" }, // leaving this as an example
+        { title: "Can't Help Myself - The Four Tops", spotifyId: "6b6IMqP565TbtFFZg9iFf3" },
       ],
     },
   ])
@@ -100,6 +120,29 @@ export default function AddMemoriesPage() {
     { value: "travel", label: "Travel & Adventures" },
     { value: "community", label: "Community Service" },
   ]
+
+  // Auto-advance carousel
+  useEffect(() => {
+    if (isCarouselPlaying) {
+      const timer = setInterval(() => {
+        setCurrentPhotoIndex((prev) => (prev + 1) % carouselPhotos.length);
+      }, 4000); // Change photo every 4 seconds
+      
+      return () => clearInterval(timer);
+    }
+  }, [isCarouselPlaying]);
+
+  const nextPhoto = () => {
+    setCurrentPhotoIndex((prev) => (prev + 1) % carouselPhotos.length);
+  };
+
+  const prevPhoto = () => {
+    setCurrentPhotoIndex((prev) => (prev - 1 + carouselPhotos.length) % carouselPhotos.length);
+  };
+
+  const toggleCarouselPlay = () => {
+    setIsCarouselPlaying(!isCarouselPlaying);
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -171,13 +214,13 @@ export default function AddMemoriesPage() {
   const shareMemoryToFacebook = (memory: Memory) => {
     const url = encodeURIComponent(window.location.href)
     const text = encodeURIComponent(
-      `Remembering Gary Robert Beaumont: "${memory.title}" - ${memory.description.substring(0, 100)}...`,
+      `Remembering Maureen Munns: "${memory.title}" - ${memory.description.substring(0, 100)}...`,
     )
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`, "_blank")
   }
 
   const shareMemoryToInstagram = (memory: Memory) => {
-    const text = `Remembering Gary Robert Beaumont: "${memory.title}" - ${memory.description.substring(0, 100)}... ${window.location.href}`
+    const text = `Remembering Maureen Munns: "${memory.title}" - ${memory.description.substring(0, 100)}... ${window.location.href}`
     navigator.clipboard.writeText(text)
     alert("Memory details copied to clipboard! You can now paste it in your Instagram story or post.")
   }
@@ -225,13 +268,77 @@ export default function AddMemoriesPage() {
               </Button>
             </Link>
             <h1 className="text-2xl font-bold text-foreground">Share Memories</h1>
-            <div className="w-32"></div> {/* Spacer for centering */}
+            <div className="w-32"></div>
           </div>
         </div>
       </header>
 
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto space-y-8">
+          {/* Photo Carousel */}
+          <Card className="bg-card border-border overflow-hidden">
+            <div className="relative h-96 md:h-[500px] bg-muted">
+              <Image
+                src={carouselPhotos[currentPhotoIndex].url}
+                alt={carouselPhotos[currentPhotoIndex].caption}
+                fill
+                className="object-contain"
+                priority
+              />
+              
+              {/* Navigation Arrows */}
+              <Button
+                variant="secondary"
+                size="sm"
+                className="absolute left-4 top-1/2 -translate-y-1/2 opacity-80 hover:opacity-100"
+                onClick={prevPhoto}
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </Button>
+              <Button
+                variant="secondary"
+                size="sm"
+                className="absolute right-4 top-1/2 -translate-y-1/2 opacity-80 hover:opacity-100"
+                onClick={nextPhoto}
+              >
+                <ChevronRight className="w-5 h-5" />
+              </Button>
+
+              {/* Play/Pause Button */}
+              <Button
+                variant="secondary"
+                size="sm"
+                className="absolute bottom-4 right-4 opacity-80 hover:opacity-100"
+                onClick={toggleCarouselPlay}
+              >
+                {isCarouselPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+              </Button>
+
+              {/* Caption */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                <p className="text-white text-center text-lg font-medium">
+                  {carouselPhotos[currentPhotoIndex].caption}
+                </p>
+              </div>
+
+              {/* Dots Indicator */}
+              <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-2">
+                {carouselPhotos.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentPhotoIndex(index)}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      index === currentPhotoIndex
+                        ? "bg-white w-8"
+                        : "bg-white/50 hover:bg-white/75"
+                    }`}
+                    aria-label={`Go to photo ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </Card>
+
           {/* Page Header */}
           <Card className="bg-card border-border">
             <CardHeader className="text-center">
@@ -702,17 +809,14 @@ export default function AddMemoriesPage() {
         </div>
       )}
 
-      
-      
       {/* Footer */}
       <footer className="border-t border-border bg-muted mt-16">
         <div className="container mx-auto px-4 py-8 text-center">
-          
           <div className="flex items-center justify-center">
             <div className="flex items-center gap-4">
               <p className="text-muted-foreground">{"Remembrance Reimagined • The Funeral Book"}</p>
               <Image
-                src="/funeral-book-logo.webp"
+                src="/bessie_logo_final.png"
                 alt="The Funeral Book"
                 width={60}
                 height={30}
