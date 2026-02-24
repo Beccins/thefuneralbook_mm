@@ -54,13 +54,13 @@ interface Memory {
 
 // Photo carousel data
 const carouselPhotos = [
-  { url: "/delivering-mors-eulogy.jpg", caption: "Delivering Mor's eulogy" },
+  { url: "/delivering-mors-eulogy.jpeg", caption: "Delivering Mor's eulogy" },
   { url: "/family-at-mors-cremation.jpg", caption: "Family at Mor's cremation" },
   { url: "/grandkids-with-mor.jpg", caption: "Grandkids with Mor" },
-  { url: "/josh-taylor-presents-mors-cremation-service.jpg", caption: "Josh Taylor presents Mor's cremation service" },
+  { url: "/josh-taylor-presents-mors-cremation-service.jpeg", caption: "Josh Taylor presents Mor's cremation service" },
   { url: "/kids-partners-mors-birthday.jpg", caption: "Kids and partners at Mor's birthday" },
   { url: "/mor-helping-out-at-church.jpg", caption: "Mor helping out at church" },
-  { url: "/mor-in-pink-paisley.jpg", caption: "Mor in pink paisley" },
+  { url: "/mor-in-pink-paisley.jfif", caption: "Mor in pink paisley" },
   { url: "/mor-making-toys-for-less-fortunate-kids.jpg", caption: "Mor making toys for less fortunate kids" },
   { url: "/mor-munns-funeral-book-cover-image.jpg", caption: "Mor Munns" },
   { url: "/rylie-reaching-for-mor.jpg", caption: "Rylie reaching for Mor" },
