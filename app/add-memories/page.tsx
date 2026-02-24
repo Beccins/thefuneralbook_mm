@@ -97,7 +97,7 @@ export default function AddMemoriesPage() {
         "Shorter description of the memory",
       detailedStory:
         "More detailed description",
-      imageUrl: "mor-in-pink-paisley", title: "mor munns"}
+      imageUrl: "mor-in-pink-paisley", title: "mor munns"},
       media: [
         { type: "image", url: "mor-munns-funeral-book-cover-image.jpg", title: "mor munns" },
         { type: "image", url: "02_Gary_11ish_with family.jpg", title: "Gary with Family" },
