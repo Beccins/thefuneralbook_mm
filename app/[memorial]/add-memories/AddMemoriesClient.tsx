@@ -11,21 +11,22 @@ import Link from "next/link"
 import Image from "next/image"
 import {
   ArrowLeft, Camera, Heart, Upload, ImageIcon,
-  Calendar, X, Play, Music, Video,
-  ChevronLeft, ChevronRight, Share2, Facebook, Instagram, Pause
+  Calendar, X, Play, Pause,
+  ChevronLeft, ChevronRight, Share2, Facebook, Instagram
 } from "lucide-react"
 import type { Memorial } from "@/lib/memorials"
+import { supabase } from "@/lib/supabase"
 
 interface Memory {
-  id: number
+  id: string
   name: string
   relationship: string
   category: string
   title: string
   description: string
-  imageUrl?: string
-  date: string
-  timeframe: string
+  image_url?: string
+  timeframe?: string
+  created_at: string
 }
 
 interface Props {
@@ -59,25 +60,27 @@ export function AddMemoriesClient({ slug, memorial }: Props) {
   const [isCarouselPlaying, setIsCarouselPlaying] = useState(true)
   const [previewUrl, setPreviewUrl] = useState("")
   const [expandedMemory, setExpandedMemory] = useState<Memory | null>(null)
+  const [memories, setMemories] = useState<Memory[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const [memoryForm, setMemoryForm] = useState({
     name: "", relationship: "", category: "", title: "", description: "", timeframe: "",
   })
 
-  const [memories, setMemories] = useState<Memory[]>([
-    {
-      id: 1,
-      name: "Submitter's Name",
-      relationship: "Relationship",
-      category: "family",
-      title: "Memory title",
-      description: "Shorter description of the memory",
-      date: "Date",
-      timeframe: "Memory date",
-    },
-  ])
+  useEffect(() => {
+    async function loadMemories() {
+      const { data, error } = await supabase
+        .from("memories")
+        .select("*")
+        .eq("memorial_slug", slug)
+        .order("created_at", { ascending: false })
+      if (!error && data) setMemories(data)
+      setIsLoading(false)
+    }
+    loadMemories()
+  }, [slug])
 
-  // Auto-advance carousel
   useEffect(() => {
     if (!isCarouselPlaying) return
     const timer = setInterval(() => {
@@ -94,24 +97,39 @@ export function AddMemoriesClient({ slug, memorial }: Props) {
     if (file) setPreviewUrl(URL.createObjectURL(file))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (memoryForm.name && memoryForm.title && memoryForm.description) {
-      const newMemory: Memory = {
-        id: memories.length + 1,
+    if (!memoryForm.name || !memoryForm.title || !memoryForm.description) return
+    setIsSubmitting(true)
+    const { data, error } = await supabase
+      .from("memories")
+      .insert({
+        memorial_slug: slug,
         name: memoryForm.name,
         relationship: memoryForm.relationship || "Friend",
         category: memoryForm.category || "family",
         title: memoryForm.title,
         description: memoryForm.description,
-        imageUrl: previewUrl || undefined,
-        date: new Date().toLocaleDateString("en-AU", { year: "numeric", month: "long", day: "numeric" }),
-        timeframe: memoryForm.timeframe,
-      }
-      setMemories([newMemory, ...memories])
+        timeframe: memoryForm.timeframe || null,
+        image_url: previewUrl || null,
+      })
+      .select()
+      .single()
+    if (error) {
+      console.error("Supabase error:", error)
+      alert("Error: " + error.message)
+    } else if (data) {
+      setMemories([data, ...memories])
       setMemoryForm({ name: "", relationship: "", category: "", title: "", description: "", timeframe: "" })
       setPreviewUrl("")
     }
+    setIsSubmitting(false)
+  }
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString("en-AU", {
+      year: "numeric", month: "long", day: "numeric",
+    })
   }
 
   const shareToFacebook = (memory: Memory) => {
@@ -139,7 +157,6 @@ export function AddMemoriesClient({ slug, memorial }: Props) {
           </Link>
         </div>
 
-        {/* Photo carousel */}
         <Card className="bg-card border-border overflow-hidden">
           <div className="relative h-96 md:h-[500px] bg-muted">
             <Image
@@ -174,7 +191,6 @@ export function AddMemoriesClient({ slug, memorial }: Props) {
           </div>
         </Card>
 
-        {/* Page header */}
         <Card className="bg-card border-border">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl text-foreground mb-2 flex items-center justify-center gap-2">
@@ -185,7 +201,6 @@ export function AddMemoriesClient({ slug, memorial }: Props) {
           </CardHeader>
         </Card>
 
-        {/* Add memory form */}
         <Card className="bg-card border-border">
           <CardHeader>
             <CardTitle className="text-xl text-foreground flex items-center gap-2">
@@ -205,7 +220,6 @@ export function AddMemoriesClient({ slug, memorial }: Props) {
                   <Input id="memory-relationship" value={memoryForm.relationship} onChange={(e) => setMemoryForm((prev) => ({ ...prev, relationship: e.target.value }))} placeholder="e.g., Family, Friend, Neighbour" className="bg-input border-border" />
                 </div>
               </div>
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label className="text-foreground">Memory Category</Label>
@@ -221,17 +235,14 @@ export function AddMemoriesClient({ slug, memorial }: Props) {
                   <Input id="memory-timeframe" value={memoryForm.timeframe} onChange={(e) => setMemoryForm((prev) => ({ ...prev, timeframe: e.target.value }))} placeholder="e.g., Summer 2020, Christmas 2019" className="bg-input border-border" />
                 </div>
               </div>
-
               <div className="space-y-2">
                 <Label htmlFor="memory-title" className="text-foreground">Memory Title *</Label>
                 <Input id="memory-title" value={memoryForm.title} onChange={(e) => setMemoryForm((prev) => ({ ...prev, title: e.target.value }))} placeholder="Give your memory a meaningful title" required className="bg-input border-border" />
               </div>
-
               <div className="space-y-2">
                 <Label htmlFor="memory-description" className="text-foreground">Share Your Memory *</Label>
                 <Textarea id="memory-description" value={memoryForm.description} onChange={(e) => setMemoryForm((prev) => ({ ...prev, description: e.target.value }))} placeholder={`Tell us about this special moment with ${memorial.shortName}...`} rows={4} required className="bg-input border-border resize-none" />
               </div>
-
               <div className="space-y-2">
                 <Label className="text-foreground">Add a Photo (Optional)</Label>
                 <div className="border-2 border-dashed border-border rounded-lg p-6 text-center">
@@ -257,55 +268,61 @@ export function AddMemoriesClient({ slug, memorial }: Props) {
                   )}
                 </div>
               </div>
-
-              <Button type="submit" className="w-full md:w-auto bg-primary hover:bg-primary/90 text-primary-foreground">
-                Share Memory
+              <Button type="submit" disabled={isSubmitting} className="w-full md:w-auto bg-primary hover:bg-primary/90 text-primary-foreground">
+                {isSubmitting ? "Sharing..." : "Share Memory"}
               </Button>
             </form>
           </CardContent>
         </Card>
 
-        {/* Memories gallery */}
         <div className="space-y-6">
           <div className="flex items-center gap-2">
             <Heart className="w-5 h-5 text-primary" />
             <h2 className="text-xl font-semibold text-foreground">Shared Memories ({memories.length})</h2>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {memories.map((memory) => (
-              <Card key={memory.id} className="bg-card border-border overflow-hidden cursor-pointer hover:shadow-lg transition-shadow" onClick={() => setExpandedMemory(memory)}>
-                {memory.imageUrl && (
-                  <div className="relative h-48 w-full">
-                    <Image src={memory.imageUrl} alt={memory.title} fill className="object-cover" />
-                  </div>
-                )}
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground">
-                      {getCategoryIcon(memory.category)} {categories.find((c) => c.value === memory.category)?.label}
-                    </span>
-                    {memory.timeframe && (
-                      <span className="text-xs text-muted-foreground flex items-center gap-1">
-                        <Calendar className="w-3 h-3" />{memory.timeframe}
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="font-semibold text-foreground mb-2 text-balance">{memory.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-3 text-pretty line-clamp-3">{memory.description}</p>
-                  <div className="border-t border-border pt-3">
-                    <div className="flex justify-between items-center text-xs text-muted-foreground">
-                      <span><strong className="text-foreground">{memory.name}</strong> • {memory.relationship}</span>
-                      <span>{memory.date}</span>
+          {isLoading ? (
+            <p className="text-muted-foreground text-center py-8">Loading memories...</p>
+          ) : memories.length === 0 ? (
+            <Card className="bg-card border-border">
+              <CardContent className="p-6 text-center text-muted-foreground">
+                Be the first to share a memory of {memorial.shortName}.
+              </CardContent>
+            </Card>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {memories.map((memory) => (
+                <Card key={memory.id} className="bg-card border-border overflow-hidden cursor-pointer hover:shadow-lg transition-shadow" onClick={() => setExpandedMemory(memory)}>
+                  {memory.image_url && (
+                    <div className="relative h-48 w-full">
+                      <Image src={memory.image_url} alt={memory.title} fill className="object-cover" />
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  )}
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground">
+                        {getCategoryIcon(memory.category)} {categories.find((c) => c.value === memory.category)?.label}
+                      </span>
+                      {memory.timeframe && (
+                        <span className="text-xs text-muted-foreground flex items-center gap-1">
+                          <Calendar className="w-3 h-3" />{memory.timeframe}
+                        </span>
+                      )}
+                    </div>
+                    <h3 className="font-semibold text-foreground mb-2 text-balance">{memory.title}</h3>
+                    <p className="text-sm text-muted-foreground mb-3 text-pretty line-clamp-3">{memory.description}</p>
+                    <div className="border-t border-border pt-3">
+                      <div className="flex justify-between items-center text-xs text-muted-foreground">
+                        <span><strong className="text-foreground">{memory.name}</strong> • {memory.relationship}</span>
+                        <span>{formatDate(memory.created_at)}</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
 
-        {/* Navigation */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
           <Link href={`/${slug}/leave-message`}>
             <Button variant="outline" className="w-full sm:w-auto bg-transparent">Leave a Message</Button>
@@ -316,7 +333,6 @@ export function AddMemoriesClient({ slug, memorial }: Props) {
         </div>
       </div>
 
-      {/* Memory detail modal */}
       {expandedMemory && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
           <div className="bg-background rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
@@ -327,9 +343,9 @@ export function AddMemoriesClient({ slug, memorial }: Props) {
               </Button>
             </div>
             <div className="p-6 space-y-6">
-              {expandedMemory.imageUrl && (
+              {expandedMemory.image_url && (
                 <div className="relative h-64 rounded-lg overflow-hidden">
-                  <Image src={expandedMemory.imageUrl} alt={expandedMemory.title} fill className="object-cover" />
+                  <Image src={expandedMemory.image_url} alt={expandedMemory.title} fill className="object-cover" />
                 </div>
               )}
               <div>
@@ -362,7 +378,7 @@ export function AddMemoriesClient({ slug, memorial }: Props) {
                   )}
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Shared on:</span>
-                    <span className="text-foreground">{expandedMemory.date}</span>
+                    <span className="text-foreground">{formatDate(expandedMemory.created_at)}</span>
                   </div>
                 </div>
               </div>
