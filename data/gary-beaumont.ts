@@ -190,17 +190,17 @@ Even so, it is well with my soul.`,
     "Business casual or semi-formal attire is appropriate. Happy bright colors are encouraged, so please don't feel limited to traditional black.",
 
   // ─── Add Memories carousel ───────────────────────────────────────────────────
-  carouselPhotos: [
-    { url: "/01_Gary_Young_7ish.jpg", caption: "Young Gary" },
-    { url: "/02_Gary_11ish_with_family.jpg", caption: "Gary with Family" },
-    { url: "/03_Gary_21st_cake.jpg", caption: "Gary's 21st Birthday" },
-    { url: "/04_Gary_Gail_WeddingCar.jpg", caption: "Gary & Gail's Wedding" },
-    { url: "/05_Gary_Family_50ish.jpg", caption: "Gary with Family" },
-    { url: "/06_Gary_TableTennis.jpg", caption: "Gary Playing Table Tennis" },
-    { url: "/07_Gary_Seaplane.jpg", caption: "Gary & the Seaplane" },
-    { url: "/08_Gary_in_Cadets.jpg", caption: "Gary in Cadets" },
-    { url: "/GARY 2010.jpg", caption: "Gary, 2010" },
-  ],
+ carouselPhotos: [
+  { url: "/01_Gary_Young_7ish.jpg", caption: "Young Gary" },
+  { url: "/02_Gary_11ish_with family.jpg", caption: "Gary with Family" },
+  { url: "/03_Gary_21st_cake.jpg", caption: "Gary's 21st Birthday" },
+  { url: "/04_Gary_Gail_WeddingCar.jpg", caption: "Gary & Gail's Wedding" },
+  { url: "/05_Gary_Family_50ish.jpg", caption: "Gary with Family" },
+  { url: "/06_Gary_TableTennis.jpg", caption: "Gary Playing Table Tennis" },
+  { url: "/07_Gary_Seaplane.jpg", caption: "Gary & the Seaplane" },
+  { url: "/08_Gary in Cadets.jpg", caption: "Gary in Cadets" },
+  { url: "/GARY 2010.jpg", caption: "Gary, 2010" },
+],
   memoriesIntro:
     "Share your favorite photos and memories of Gary. These precious moments will create a lasting tribute to his beautiful life and the joy he brought to so many people.",
   memoriesSubject: "Gary",
