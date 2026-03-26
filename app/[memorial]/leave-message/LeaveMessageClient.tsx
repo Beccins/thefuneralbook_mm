@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -9,13 +9,14 @@ import { Label } from "@/components/ui/label"
 import Link from "next/link"
 import { ArrowLeft, Heart, MessageCircle } from "lucide-react"
 import type { Memorial } from "@/lib/memorials"
+import { supabase } from "@/lib/supabase"
 
 interface Message {
-  id: number
+  id: string
   name: string
   relationship: string
   message: string
-  date: string
+  created_at: string
 }
 
 interface Props {
@@ -29,38 +30,51 @@ export function LeaveMessageClient({ slug, memorial }: Props) {
     relationship: "",
     message: "",
   })
+  const [messages, setMessages] = useState<Message[]>([])
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 1,
-      name: "Person's Name",
-      relationship: "Relationship",
-      message: "Message goes here",
-      date: "Date",
-    },
-  ])
+  useEffect(() => {
+    async function loadMessages() {
+      const { data, error } = await supabase
+        .from("messages")
+        .select("*")
+        .eq("memorial_slug", slug)
+        .order("created_at", { ascending: false })
+      if (!error && data) setMessages(data)
+      setIsLoading(false)
+    }
+    loadMessages()
+  }, [slug])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (formData.name && formData.message) {
-      const newMessage: Message = {
-        id: messages.length + 1,
+    if (!formData.name || !formData.message) return
+    setIsSubmitting(true)
+    const { data, error } = await supabase
+      .from("messages")
+      .insert({
+        memorial_slug: slug,
         name: formData.name,
         relationship: formData.relationship || "Friend",
         message: formData.message,
-        date: new Date().toLocaleDateString("en-AU", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        }),
-      }
-      setMessages([newMessage, ...messages])
+      })
+      .select()
+      .single()
+    if (error) {
+      console.error("Supabase error:", error)
+      alert("Error: " + error.message)
+    } else if (data) {
+      setMessages([data, ...messages])
       setFormData({ name: "", relationship: "", message: "" })
     }
+    setIsSubmitting(false)
   }
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }))
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString("en-AU", {
+      year: "numeric", month: "long", day: "numeric",
+    })
   }
 
   return (
@@ -76,7 +90,6 @@ export function LeaveMessageClient({ slug, memorial }: Props) {
           </Link>
         </div>
 
-        {/* Header */}
         <Card className="bg-card border-border">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl text-foreground mb-2">Share Your Memories</CardTitle>
@@ -87,7 +100,6 @@ export function LeaveMessageClient({ slug, memorial }: Props) {
           </CardHeader>
         </Card>
 
-        {/* Message form */}
         <Card className="bg-card border-border">
           <CardHeader>
             <CardTitle className="text-xl text-foreground flex items-center gap-2">
@@ -103,7 +115,7 @@ export function LeaveMessageClient({ slug, memorial }: Props) {
                   <Input
                     id="name"
                     value={formData.name}
-                    onChange={(e) => handleInputChange("name", e.target.value)}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
                     placeholder="Enter your full name"
                     required
                     className="bg-input border-border"
@@ -116,7 +128,7 @@ export function LeaveMessageClient({ slug, memorial }: Props) {
                   <Input
                     id="relationship"
                     value={formData.relationship}
-                    onChange={(e) => handleInputChange("relationship", e.target.value)}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, relationship: e.target.value }))}
                     placeholder="e.g., Family, Friend, Neighbour, Colleague"
                     className="bg-input border-border"
                   />
@@ -127,21 +139,24 @@ export function LeaveMessageClient({ slug, memorial }: Props) {
                 <Textarea
                   id="message"
                   value={formData.message}
-                  onChange={(e) => handleInputChange("message", e.target.value)}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
                   placeholder={`Share your memories, condolences, or thoughts about ${memorial.shortName}...`}
                   rows={6}
                   required
                   className="bg-input border-border resize-none"
                 />
               </div>
-              <Button type="submit" className="w-full md:w-auto bg-primary hover:bg-primary/90 text-primary-foreground">
-                Share Your Message
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full md:w-auto bg-primary hover:bg-primary/90 text-primary-foreground"
+              >
+                {isSubmitting ? "Sharing..." : "Share Your Message"}
               </Button>
             </form>
           </CardContent>
         </Card>
 
-        {/* Messages display */}
         <div className="space-y-6">
           <div className="flex items-center gap-2 mb-6">
             <Heart className="w-5 h-5 text-primary" />
@@ -150,23 +165,32 @@ export function LeaveMessageClient({ slug, memorial }: Props) {
             </h2>
           </div>
 
-          {messages.map((message) => (
-            <Card key={message.id} className="bg-card border-border">
-              <CardContent className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="font-semibold text-foreground">{message.name}</h3>
-                    <p className="text-sm text-muted-foreground">{message.relationship}</p>
-                  </div>
-                  <span className="text-sm text-muted-foreground">{message.date}</span>
-                </div>
-                <p className="text-foreground leading-relaxed text-pretty">{message.message}</p>
+          {isLoading ? (
+            <p className="text-muted-foreground text-center py-8">Loading messages...</p>
+          ) : messages.length === 0 ? (
+            <Card className="bg-card border-border">
+              <CardContent className="p-6 text-center text-muted-foreground">
+                Be the first to leave a message for {memorial.shortName}'s family.
               </CardContent>
             </Card>
-          ))}
+          ) : (
+            messages.map((message) => (
+              <Card key={message.id} className="bg-card border-border">
+                <CardContent className="p-6">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="font-semibold text-foreground">{message.name}</h3>
+                      <p className="text-sm text-muted-foreground">{message.relationship}</p>
+                    </div>
+                    <span className="text-sm text-muted-foreground">{formatDate(message.created_at)}</span>
+                  </div>
+                  <p className="text-foreground leading-relaxed text-pretty">{message.message}</p>
+                </CardContent>
+              </Card>
+            ))
+          )}
         </div>
 
-        {/* Navigation */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
           <Link href={`/${slug}/order-of-service`}>
             <Button variant="outline" className="w-full sm:w-auto bg-transparent">
