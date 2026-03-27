@@ -3,49 +3,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowLeft, Heart, Share2, Facebook, Instagram, ExternalLink } from "lucide-react"
 import type { Memorial } from "@/lib/memorials"
-import Image from "next/image"
 
 interface Props {
   slug: string
   memorial: Memorial
 }
-
-const CHARITIES = [
-  {
-    id: "cancer-council",
-    name: "Cancer Council Australia",
-    description: "Funds life-saving cancer research, education, and support services for Australians affected by cancer. Donations of $2 and over are tax deductible.",
-    url: "https://www.cancer.org.au/get-involved/donate-to-cancer-council/one-time-donation",
-    logo: "https://www.cancer.org.au/content/images/cancer-council-logo.png",
-    color: "hover:border-yellow-400",
-  },
-  {
-    id: "stroke-foundation",
-    name: "Stroke Foundation",
-    description: "Works to prevent stroke, save lives and enhance recovery for the 500,000+ Australians living with the effects of stroke. All donations $2 and over are tax deductible.",
-    url: "https://donate.strokefoundation.org.au/",
-    logo: "https://strokefoundation.org.au/content/images/stroke-foundation-logo.png",
-    color: "hover:border-red-400",
-  },
-  {
-    id: "white-ribbon",
-    name: "White Ribbon Australia",
-    description: "Drives primary prevention programs and engages men and boys to lead the charge against violence towards women and children.",
-    url: "https://whiteribbon.org.au/give-now/",
-    logo: "https://whiteribbon.org.au/content/images/white-ribbon-logo.png",
-    color: "hover:border-white",
-  },
-  {
-    id: "salvation-army",
-    name: "The Salvation Army",
-    description: "Supports Australians facing homelessness, addiction, domestic violence, and crisis — providing practical help and hope across the country.",
-    url: "https://www.salvationarmy.org.au/donate/make-a-donation/donate-online/",
-    logo: "https://www.salvationarmy.org.au/content/images/salvos-logo.png",
-    color: "hover:border-red-600",
-  },
-]
 
 export function DonationsClient({ slug, memorial }: Props) {
 
@@ -89,38 +54,38 @@ export function DonationsClient({ slug, memorial }: Props) {
         {/* Charity cards */}
         <div className="space-y-4">
           <h2 className="text-xl font-semibold text-foreground">Choose a Charity to Donate To</h2>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-sm text-muted-foreground">
             Each button will take you directly to the charity's secure donation page where you'll receive an official receipt.
           </p>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {CHARITIES.map((charity) => (
-              <Card
-                key={charity.id}
-                className={`bg-card border-border transition-all duration-200 ${charity.color} border-2`}
-              >
+            {memorial.charities.map((charity) => (
+              <Card key={charity.id} className="bg-card border-border hover:shadow-lg transition-all duration-200 border-2">
                 <CardContent className="p-6 flex flex-col gap-4 h-full">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center overflow-hidden flex-shrink-0">
-                      <img
+
+                  {/* Logo + Name */}
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 relative flex-shrink-0 bg-white rounded-lg p-1">
+                      <Image
                         src={charity.logo}
                         alt={charity.name}
-                        className="w-10 h-10 object-contain"
-                        onError={(e) => {
-                          // Fallback to initials if logo fails to load
-                          e.currentTarget.style.display = "none"
-                        }}
+                        fill
+                        className="object-contain p-1"
                       />
                     </div>
                     <h3 className="font-semibold text-foreground">{charity.name}</h3>
                   </div>
+
+                  {/* Description */}
                   <p className="text-sm text-muted-foreground flex-1">{charity.description}</p>
-                  <a href={charity.url} target="_blank" rel="noopener noreferrer">
-                    <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground flex items-center gap-2">
-                      Donate to {charity.name.split(" ")[0]} {charity.name.split(" ")[1]}
+
+                  {/* Donate button */}
+                  <a href={charity.url} target="_blank" rel="noopener noreferrer" className="w-full">
+                    <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground flex items-center justify-center gap-2">
+                      Donate Now
                       <ExternalLink className="w-4 h-4" />
                     </Button>
                   </a>
+
                 </CardContent>
               </Card>
             ))}
