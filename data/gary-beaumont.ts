@@ -210,13 +210,36 @@ Even so, it is well with my soul.`,
     "In lieu of flowers, the family requests donations be made to one of the following organizations that were dear to Gary's heart. Your generosity will continue his legacy of giving and community service.",
   donationsShareText:
     "Honor Gary's memory by making a donation to causes he cared about. Help continue his legacy of giving and community service.",
-  charities: [
-    {
-      id: "charity",
-      name: "Charity Name",
-      description: "Description of charity",
-    },
-  ],
+ charities: [
+  {
+    id: "cancer-council",
+    name: "Cancer Council Australia",
+    description: "Funds life-saving cancer research, education, and support services for Australians affected by cancer. Donations of $2 and over are tax deductible.",
+    url: "https://www.cancer.org.au/get-involved/donate-to-cancer-council/one-time-donation",
+    logo: "/cancer-council-logo-new.gif",
+  },
+  {
+    id: "stroke-foundation",
+    name: "Stroke Foundation",
+    description: "Works to prevent stroke, save lives and enhance recovery for the 500,000+ Australians living with the effects of stroke.",
+    url: "https://donate.strokefoundation.org.au/",
+    logo: "/logo-stroke-foundation.webp",
+  },
+  {
+    id: "white-ribbon",
+    name: "White Ribbon Australia",
+    description: "Drives primary prevention programs and engages men and boys to lead the charge against violence towards women and children.",
+    url: "https://whiteribbon.org.au/give-now/",
+    logo: "/white-ribbon-logo.jpg",
+  },
+  {
+    id: "salvation-army",
+    name: "The Salvation Army",
+    description: "Supports Australians facing homelessness, addiction, domestic violence, and crisis — providing practical help and hope across the country.",
+    url: "https://www.salvationarmy.org.au/donate/make-a-donation/donate-online/",
+    logo: "/salvation-army-logo.webp",
+  },
+],
 
   // ─── Contact ─────────────────────────────────────────────────────────────────
   contactEmail: "rebecca.munns@thefuneralbook.com",
