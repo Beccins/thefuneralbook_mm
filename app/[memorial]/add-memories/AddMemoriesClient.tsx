@@ -92,9 +92,33 @@ export function AddMemoriesClient({ slug, memorial }: Props) {
   const nextPhoto = () => setCurrentPhotoIndex((prev) => (prev + 1) % memorial.carouselPhotos.length)
   const prevPhoto = () => setCurrentPhotoIndex((prev) => (prev - 1 + memorial.carouselPhotos.length) % memorial.carouselPhotos.length)
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+ const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-    if (file) setPreviewUrl(URL.createObjectURL(file))
+    if (!file) return
+    
+    // Show preview immediately
+    setPreviewUrl(URL.createObjectURL(file))
+    
+    // Upload to Supabase Storage
+    const fileExt = file.name.split(".").pop()
+    const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`
+    
+    const { data, error } = await supabase.storage
+      .from("memory-photos")
+      .upload(fileName, file)
+    
+    if (error) {
+      console.error("Upload error:", error)
+      alert("Photo upload failed: " + error.message)
+      return
+    }
+    
+    // Get the public URL
+    const { data: { publicUrl } } = supabase.storage
+      .from("memory-photos")
+      .getPublicUrl(fileName)
+    
+    setPreviewUrl(publicUrl)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
