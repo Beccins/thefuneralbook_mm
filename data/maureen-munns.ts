@@ -90,13 +90,27 @@ My God, how great Thou art!
  
 Chorus`,
     },
-    {
+   {
       id: "tribute",
       title: "Memories shared of Maureen",
       subtitle: "Phil Munns reads poem - More of Mor",
       time: "",
       type: "tribute" as const,
       audioUrl: "/Phil Munns reads poem - More of Mor.m4a",
+    },
+    {
+      id: "scripture-2",
+      title: "Scripture Reading - Matthew 25:14-30",
+      subtitle: "Ashlyn Orpen",
+      time: "",
+      type: "general" as const,
+    },
+    {
+      id: "message",
+      title: "Message",
+      subtitle: "Kathy Bates",
+      time: "",
+      type: "general" as const,
     },
     {
       id: "song-2",
