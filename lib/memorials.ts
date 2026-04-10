@@ -1,11 +1,13 @@
 import { maureen } from "@/data/maureen-munns"
 import { gary } from "@/data/gary-beaumont"
+import { founderDemo } from "@/data/founder-demo"
 import type { Memorial } from "@/data/maureen-munns"
 
 // Registry — add new memorials here as one line
 const registry: Record<string, Memorial> = {
   "maureen-munns": maureen,
   "gary-beaumont": gary,
+  "founder-demo": founderDemo,
 }
 
 /**
