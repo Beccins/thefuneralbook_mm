@@ -22,8 +22,7 @@ export const founderDemo = {
   serviceTime: "10:00 AM",
   serviceVenueName: "Cabarita Park Amphitheatre",
   serviceVenueAddress: "Cabarita Road\nCabarita, NSW, 2137",
-  serviceVenueMapUrl:
-    "https://www.google.com/maps/place/Cabarita+Park/@-33.8507,151.0947,17z",
+  serviceVenueMapUrl: "https://www.google.com/maps/place/Cabarita+Park/@-33.8507,151.0947,17z",
   officiant: "Alex Rivers",
   serviceYouTubeId: "",
   serviceYouTubeTitle: "",
@@ -34,4 +33,107 @@ export const founderDemo = {
       title: "Welcome and Opening Words",
       subtitle: "Alex Rivers",
       time: "",
-      type: "gen
+      type: "general" as const,
+    },
+    {
+      id: "song-1",
+      title: "Song",
+      subtitle: "What a Wonderful World",
+      time: "",
+      type: "hymn" as const,
+      content: "",
+    },
+    {
+      id: "tribute-1",
+      title: "Memories shared of Bec",
+      subtitle: "Sam Nguyen",
+      time: "",
+      type: "tribute" as const,
+    },
+    {
+      id: "tribute-2",
+      title: "Memories shared of Bec",
+      subtitle: "Ian Cartwright",
+      time: "",
+      type: "tribute" as const,
+    },
+    {
+      id: "song-2",
+      title: "Song",
+      subtitle: "Here Comes the Sun",
+      time: "",
+      type: "hymn" as const,
+      content: "",
+    },
+    {
+      id: "message",
+      title: "Message",
+      subtitle: "Alex Rivers",
+      time: "",
+      type: "general" as const,
+    },
+    {
+      id: "benediction",
+      title: "Closing Words",
+      subtitle: "Alex Rivers",
+      time: "",
+      type: "general" as const,
+    },
+  ],
+
+  // ─── After Service ───────────────────────────────────────────────────────────
+  receptionIntro:
+    "Following the service, family and friends are warmly invited to continue celebrating Bec's life over food, drinks and shared memories by the water.",
+  receptionTime: "Immediately following the service",
+  receptionVenueName: "The Boathouse Cabarita",
+  receptionVenueDetail: "Waterside terrace, Cabarita Park",
+  receptionVenueMapUrl: "https://www.google.com/maps/place/Cabarita+Park/@-33.8507,151.0947,17z",
+  intermentTitle: "Private Family Farewell",
+  intermentDetail: "A private farewell for immediate family will be held at a location close to Bec's heart.",
+  intermentLocation: "To be advised to immediate family",
+  dressCode: "Come as you are — bright colours and comfortable shoes encouraged. Bec would have wanted you to feel at home.",
+
+  // ─── Add Memories carousel ───────────────────────────────────────────────────
+  carouselPhotos: [
+    { url: "/Bec_Munns_2024.jpg", caption: "Bec, 2024" },
+    { url: "/at_the_tennis_mum_dad.jpg", caption: "At the tennis with Mum and Dad" },
+    { url: "/christmas_with_inlaws.jpg", caption: "Christmas with the in-laws" },
+    { url: "/godmother_millies_baptism.jpg", caption: "Godmother at Millie's baptism" },
+    { url: "/high_tea_with_sam.jpg", caption: "High tea with Sam" },
+    { url: "/lunch_date_with_ian.jpg", caption: "Lunch date with Ian" },
+    { url: "/rebecca_crown.jpg", caption: "Rebecca" },
+  ],
+  memoriesIntro:
+    "Share your favourite photos and memories of Bec. These precious moments will create a lasting tribute to her life and the joy she brought to so many people.",
+  memoriesSubject: "Bec",
+
+  // ─── Donations ───────────────────────────────────────────────────────────────
+  donationsIntro:
+    "In lieu of flowers, the family requests donations be made to causes close to Bec's heart. Your generosity will continue her legacy of care and community.",
+  donationsShareText:
+    "Honour Bec's memory by making a donation to causes she cared deeply about.",
+  charities: [
+    {
+      id: "stroke-foundation",
+      name: "Stroke Foundation",
+      description: "Works to prevent stroke, save lives and enhance recovery for the 500,000+ Australians living with the effects of stroke.",
+      url: "https://donate.strokefoundation.org.au/",
+      logo: "/logo-stroke-foundation.webp",
+    },
+    {
+      id: "leukaemia-foundation",
+      name: "Leukaemia Foundation",
+      description: "Dedicated to the care and cure of patients and families living with leukaemia, lymphoma, myeloma and related blood cancers.",
+      url: "https://www.leukaemia.org.au/donate/",
+      logo: "/leukaemia-foundation-logo.png",
+    },
+  ],
+
+  // ─── Contact ─────────────────────────────────────────────────────────────────
+  contactEmail: "rebecca.munns@thefuneralbook.com",
+  contactPhone: "0200 000 000",
+  familyContactName: "The Funeral Book Team",
+  familyContactPhone: "0200 000 000",
+  faqDonationsText: "Yes, the family welcomes donations to Bec's chosen charities.",
+  faqDressCode: "Come as you are — bright colours and comfortable shoes encouraged.",
+}
