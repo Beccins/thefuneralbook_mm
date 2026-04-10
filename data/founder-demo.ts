@@ -125,7 +125,7 @@ export const founderDemo = {
       name: "Leukaemia Foundation",
       description: "Dedicated to the care and cure of patients and families living with leukaemia, lymphoma, myeloma and related blood cancers.",
       url: "https://www.leukaemia.org.au/donate/",
-      logo: "/leukaemia-foundation-logo.png",
+      logo: "/leukemia_foundation_new_logo.jpg",
     },
   ],
 
