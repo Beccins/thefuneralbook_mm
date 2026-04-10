@@ -95,7 +95,7 @@ export const founderDemo = {
 
   // ─── Add Memories carousel ───────────────────────────────────────────────────
   carouselPhotos: [
-    { url: "/Bec_Munns_2024.jpg", caption: "Bec, 2024" },
+    { url: "/bec_munns_2024.jpg", caption: "Bec, 2024" },
     { url: "/at_the_tennis_mum_dad.jpg", caption: "At the tennis with Mum and Dad" },
     { url: "/christmas_with_inlaws.jpg", caption: "Christmas with the in-laws" },
     { url: "/godmother_millies_baptism.jpg", caption: "Godmother at Millie's baptism" },
