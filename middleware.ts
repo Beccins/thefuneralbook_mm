@@ -19,7 +19,7 @@ export function middleware(request: NextRequest) {
     const url = request.nextUrl.clone()
 
     // Silently rewrite / → /slug, /contact → /slug/contact etc.
-    if (!url.pathname.startsWith(`/${slug}`)) {
+    if (!url.pathname.startsWith(`/${slug}`) && !url.pathname.startsWith('/api')) {
       url.pathname = `/${slug}${url.pathname}`
       return NextResponse.rewrite(url)
     }
