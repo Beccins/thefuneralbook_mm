@@ -1,6 +1,6 @@
+import { type Metadata } from "next"
 import { notFound } from "next/navigation"
 import Image from "next/image"
-import Link from "next/link"
 import { getMemorial } from "@/lib/memorials"
 
 interface MemorialLayoutProps {
@@ -8,14 +8,59 @@ interface MemorialLayoutProps {
   params: { memorial: string }
 }
 
+// ── OG metadata ──────────────────────────────────────────────────────────────
+export async function generateMetadata(
+  { params }: { params: { memorial: string } }
+): Promise<Metadata> {
+  const memorial = getMemorial(params.memorial)
+  if (!memorial) return {}
+
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "https://thefuneralbook.com.au"
+
+  const ogImageUrl = new URL("/api/og", baseUrl)
+  ogImageUrl.searchParams.set("fullName", memorial.fullName)
+  ogImageUrl.searchParams.set("tagline",  memorial.tagline)
+  ogImageUrl.searchParams.set("dob",      memorial.dateOfBirth)
+  ogImageUrl.searchParams.set("dod",      memorial.dateOfDeath)
+  ogImageUrl.searchParams.set("photo",    memorial.photo)
+
+  const title       = `${memorial.fullName} — Digital Memorial`
+  const description = `${memorial.tagline} · ${memorial.dateOfBirth} – ${memorial.dateOfDeath}`
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url:      `${baseUrl}/${memorial.slug}`,
+      siteName: "The Funeral Book",
+      images: [
+        {
+          url:    ogImageUrl.toString(),
+          width:  1200,
+          height: 630,
+          alt:    `Memorial for ${memorial.fullName}`,
+        },
+      ],
+      type: "website",
+    },
+    twitter: {
+      card:        "summary_large_image",
+      title,
+      description,
+      images:      [ogImageUrl.toString()],
+    },
+  }
+}
+
+// ── Layout (unchanged) ───────────────────────────────────────────────────────
 export default function MemorialLayout({ children, params }: MemorialLayoutProps) {
   const memorial = getMemorial(params.memorial)
-
   if (!memorial) notFound()
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {/* Header */}
       <header className="border-b border-border bg-background">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-center">
@@ -40,13 +85,7 @@ export default function MemorialLayout({ children, params }: MemorialLayoutProps
           </div>
         </div>
       </header>
-
-      {/* Page content */}
-      <main className="flex-1">
-        {children}
-      </main>
-
-      {/* Footer */}
+      <main className="flex-1">{children}</main>
       <footer className="border-t border-border bg-muted mt-16">
         <div className="container mx-auto px-4 py-8 text-center">
           <div className="flex items-center justify-center">
@@ -63,7 +102,7 @@ export default function MemorialLayout({ children, params }: MemorialLayoutProps
           </div>
           <p className="text-xs text-muted-foreground/70 mt-2">
             Created by{" "}
-            <a
+            
               href="https://thefuneralbook.com.au"
               target="_blank"
               rel="noopener noreferrer"
