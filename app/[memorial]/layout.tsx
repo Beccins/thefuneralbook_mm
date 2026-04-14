@@ -11,7 +11,7 @@ interface MemorialLayoutProps {
 // ── OG metadata ──────────────────────────────────────────────────────────────
 export async function generateMetadata(
   { params }: { params: { memorial: string } }
-): Promise<Metadata> {
+) {
   const memorial = getMemorial(params.memorial)
   if (!memorial) return {}
 
