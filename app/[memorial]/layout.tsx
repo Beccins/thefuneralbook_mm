@@ -101,7 +101,7 @@ export default function MemorialLayout({ children, params }: MemorialLayoutProps
             </div>
           </div>
           <p className="text-xs text-muted-foreground/70 mt-2">
-            Created by{" "}
+          Created by{" "}
             
               href="https://thefuneralbook.com.au"
               target="_blank"
