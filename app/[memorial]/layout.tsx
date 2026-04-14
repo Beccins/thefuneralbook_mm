@@ -1,4 +1,3 @@
-
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import { getMemorial } from "@/lib/memorials"
@@ -8,7 +7,6 @@ interface MemorialLayoutProps {
   params: { memorial: string }
 }
 
-// ── OG metadata ──────────────────────────────────────────────────────────────
 export async function generateMetadata(
   { params }: { params: { memorial: string } }
 ) {
@@ -19,13 +17,13 @@ export async function generateMetadata(
 
   const ogImageUrl = new URL("/api/og", baseUrl)
   ogImageUrl.searchParams.set("fullName", memorial.fullName)
-  ogImageUrl.searchParams.set("tagline",  memorial.tagline)
-  ogImageUrl.searchParams.set("dob",      memorial.dateOfBirth)
-  ogImageUrl.searchParams.set("dod",      memorial.dateOfDeath)
-  ogImageUrl.searchParams.set("photo",    memorial.photo)
+  ogImageUrl.searchParams.set("tagline", memorial.tagline)
+  ogImageUrl.searchParams.set("dob", memorial.dateOfBirth)
+  ogImageUrl.searchParams.set("dod", memorial.dateOfDeath)
+  ogImageUrl.searchParams.set("photo", memorial.photo)
 
-  const title       = `${memorial.fullName} — Digital Memorial`
-  const description = `${memorial.tagline} · ${memorial.dateOfBirth} – ${memorial.dateOfDeath}`
+  const title = `${memorial.fullName} - Digital Memorial`
+  const description = `${memorial.tagline} - ${memorial.dateOfBirth} - ${memorial.dateOfDeath}`
 
   return {
     title,
@@ -33,28 +31,27 @@ export async function generateMetadata(
     openGraph: {
       title,
       description,
-      url:      `${baseUrl}/${memorial.slug}`,
+      url: `${baseUrl}/${memorial.slug}`,
       siteName: "The Funeral Book",
       images: [
         {
-          url:    ogImageUrl.toString(),
-          width:  1200,
+          url: ogImageUrl.toString(),
+          width: 1200,
           height: 630,
-          alt:    `Memorial for ${memorial.fullName}`,
+          alt: `Memorial for ${memorial.fullName}`,
         },
       ],
       type: "website",
     },
     twitter: {
-      card:        "summary_large_image",
+      card: "summary_large_image",
       title,
       description,
-      images:      [ogImageUrl.toString()],
+      images: [ogImageUrl.toString()],
     },
   }
 }
 
-// ── Layout (unchanged) ───────────────────────────────────────────────────────
 export default function MemorialLayout({ children, params }: MemorialLayoutProps) {
   const memorial = getMemorial(params.memorial)
   if (!memorial) notFound()
@@ -101,7 +98,7 @@ export default function MemorialLayout({ children, params }: MemorialLayoutProps
             </div>
           </div>
           <p className="text-xs text-muted-foreground/70 mt-2">
-          Created by{" "}
+            Created by{" "}
             
               href="https://thefuneralbook.com.au"
               target="_blank"
