@@ -54,7 +54,7 @@ export async function generateMetadata(
 
 export default function MemorialLayout({ children, params }: { children: React.ReactNode; params: { memorial: string } }) {
   const memorial = getMemorial(params.memorial)
-  if (!memorial) notFound()
+ if (!memorial) return notFound()
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
