@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
           height: "630px",
           display: "flex",
           flexDirection: "row",
-          background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
+          background: "linear-gradient(135deg, #f9f9f9 0%, #f9f9f9 50%, #f9f9f9 100%)",
           fontFamily: "serif",
         }}
       >
@@ -59,7 +59,7 @@ export async function GET(request: NextRequest) {
       right: 0,
       width: "120px",
       height: "630px",
-      background: "linear-gradient(to right, transparent, #16213e)",
+      background: "linear-gradient(to right, transparent, #f9f9f9)",
     }}
   />
 </div>
@@ -79,7 +79,7 @@ export async function GET(request: NextRequest) {
           <div
             style={{
               fontSize: "22px",
-              color: "#c9a96e",
+              color: "#F8B7BC",
               letterSpacing: "4px",
               textTransform: "uppercase",
               display: "flex",
@@ -93,7 +93,7 @@ export async function GET(request: NextRequest) {
             style={{
               fontSize: "52px",
               fontWeight: "bold",
-              color: "#ffffff",
+              color: "#1a1a1a",
               lineHeight: 1.15,
               display: "flex",
             }}
@@ -106,7 +106,7 @@ export async function GET(request: NextRequest) {
             <div
               style={{
                 fontSize: "26px",
-                color: "#a0aec0",
+                color: "666666",
                 letterSpacing: "1px",
                 display: "flex",
               }}
@@ -120,7 +120,7 @@ export async function GET(request: NextRequest) {
             style={{
               width: "60px",
               height: "2px",
-              background: "#c9a96e",
+              background: "#F8B7BC",
               display: "flex",
             }}
           />
@@ -129,7 +129,7 @@ export async function GET(request: NextRequest) {
           <div
             style={{
               fontSize: "20px",
-              color: "#718096",
+              color: "#999999",
               letterSpacing: "2px",
               textTransform: "uppercase",
               display: "flex",
