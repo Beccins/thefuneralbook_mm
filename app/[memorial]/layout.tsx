@@ -1,75 +1,54 @@
-import { notFound } from "next/navigation"
-import Image from "next/image"
-import { getMemorial } from "@/lib/memorials"
+import type { Metadata } from "next"
+import Link from "next/link"
+import { getMemorialData } from "@/lib/memorial-data"
 
-interface MemorialLayoutProps {
-  children: React.ReactNode
+type Props = {
   params: { memorial: string }
+  children: React.ReactNode
 }
 
-export default function MemorialLayout({ children, params }: any) {
-  const memorial = getMemorial(params.memorial)
- if (!memorial) notFound()
+export async function generateMetadata(
+  { params }: { params: { memorial: string } }
+): Promise<Metadata> {
+  const memorial = await getMemorialData(params.memorial)
 
+  if (!memorial) {
+    return {
+      title: "Memorial | The Funeral Book",
+    }
+  }
+
+  const ogImageUrl = `https://www.thefuneralbook.com.au/api/og?slug=${memorial.slug}`
+
+  return {
+    title: `${memorial.fullName} | The Funeral Book`,
+    description: memorial.tagline ?? `A memorial for ${memorial.fullName}`,
+    openGraph: {
+      title: `${memorial.fullName}`,
+      description: memorial.tagline ?? `A memorial for ${memorial.fullName}`,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: `Memorial for ${memorial.fullName}`,
+        },
+      ],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${memorial.fullName}`,
+      description: memorial.tagline ?? `A memorial for ${memorial.fullName}`,
+      images: [ogImageUrl],
+    },
+  }
+}
+
+export default function MemorialLayout({ children }: Props) {
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <header className="border-b border-border bg-background">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-center">
-            <div className="flex items-center gap-4 flex-wrap justify-center">
-              {memorial.logos.map((logo, i) => (
-                <div key={i} className="flex items-center gap-4">
-                  {i > 0 && <div className="h-8 w-px bg-border" />}
-                  <Image
-                    src={logo.src}
-                    alt={logo.alt}
-                    width={logo.width}
-                    height={logo.height}
-                    className="object-contain"
-                  />
-                </div>
-              ))}
-              <div className="h-8 w-px bg-border" />
-              <h1 className="text-2xl font-bold text-foreground">
-                Digital Memorial Services
-              </h1>
-            </div>
-          </div>
-        </div>
-      </header>
-      <main className="flex-1">{children}</main>
-      <footer className="border-t border-border bg-muted mt-16">
-        <div className="container mx-auto px-4 py-8 text-center">
-          <div className="flex items-center justify-center">
-            <div className="flex items-center gap-4">
-              <p className="text-muted-foreground">{memorial.footerTagline}</p>
-              <Image
-                src={memorial.footerLogo.src}
-                alt={memorial.footerLogo.alt}
-                width={memorial.footerLogo.width}
-                height={memorial.footerLogo.height}
-                className="object-contain"
-              />
-            </div>
-          </div>
-          <p className="text-xs text-muted-foreground/70 mt-2">
-            Created by{" "}
-            
-              href="https://thefuneralbook.com.au"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-muted-foreground transition-colors"
-            >
-              Munns Media Pty Ltd
-            </a>
-          </p>
-        </div>
-      </footer>
+    <div className="min-h-screen bg-background">
+      {children}
     </div>
   )
-}
-
-export async function generateStaticParams() {
-  const { getAllSlugs } = await import("@/lib/memorials")
-  return getAllSlugs().map((slug) => ({ memorial: slug }))
 }
