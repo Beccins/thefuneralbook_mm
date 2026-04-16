@@ -9,7 +9,7 @@ interface MemorialLayoutProps {
 
 export default function MemorialLayout({ children, params }: MemorialLayoutProps) {
   const memorial = getMemorial(params.memorial)
-  if (!memorial) return notFound()
+ if (!memorial) notFound()
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
