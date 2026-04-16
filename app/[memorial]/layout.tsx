@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { getMemorialData } from "@/lib/memorial-data"
+import { getMemorial } from "@/lib/memorials"
 
 type Props = {
   params: { memorial: string }
@@ -10,7 +10,7 @@ type Props = {
 export async function generateMetadata(
   { params }: { params: { memorial: string } }
 ): Promise<Metadata> {
-  const memorial = await getMemorialData(params.memorial)
+  const memorial = getMemorial(params.memorial)
 
   if (!memorial) {
     return {
