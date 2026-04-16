@@ -18,8 +18,8 @@ export async function generateMetadata(
     }
   }
 
-  const baseUrl = "https://www.thefuneralbook.com.au"
-  const ogImageUrl = `${baseUrl}/api/og?fullName=${encodeURIComponent(memorial.fullName)}&tagline=${encodeURIComponent(memorial.tagline)}&dob=${encodeURIComponent(memorial.dateOfBirth)}&dod=${encodeURIComponent(memorial.dateOfDeath)}&photo=${encodeURIComponent(memorial.photo)}`
+  const baseUrl = "https://maureen-munns.thefuneralbook.com.au"
+  const ogImageUrl = `${baseUrl}/api/og?fullName=${encodeURIComponent(memorial.fullName)}&tagline=${encodeURIComponent(memorial.tagline)}&dob=${encodeURIComponent(memorial.dateOfBirth)}&dod=${encodeURIComponent(memorial.dateOfDeath)}&photo=${encodeURIComponent(baseUrl + memorial.photo)}`
 
   return {
     title: `${memorial.fullName} | The Funeral Book`,
@@ -29,7 +29,7 @@ export async function generateMetadata(
       description: memorial.tagline ?? `A memorial for ${memorial.fullName}`,
       images: [
         {
-      const ogImageUrl = `${baseUrl}/api/og?fullName=${encodeURIComponent(memorial.fullName)}&tagline=${encodeURIComponent(memorial.tagline)}&dob=${encodeURIComponent(memorial.dateOfBirth)}&dod=${encodeURIComponent(memorial.dateOfDeath)}&photo=${encodeURIComponent(baseUrl + memorial.photo)}`
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: `Memorial for ${memorial.fullName}`,
