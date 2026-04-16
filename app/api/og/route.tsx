@@ -29,42 +29,41 @@ export async function GET(request: NextRequest) {
           fontFamily: "serif",
         }}
       >
-        {/* Left — photo */}
-        <div
-          style={{
-            width: "420px",
-            height: "630px",
-            display: "flex",
-            flexShrink: 0,
-            position: "relative",
-          }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-  src={photoUrl}
-  alt={fullName}
-  width={420}
-  height={630}
+      {/* Left — photo (only if provided) */}
+{photo && (
+<div
   style={{
     width: "420px",
     height: "630px",
-    objectFit: "cover",
-    objectPosition: "center top",
+    display: "flex",
+    flexShrink: 0,
+    position: "relative",
   }}
-/>
-          {/* Fade from photo into right panel */}
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              right: 0,
-              width: "120px",
-              height: "630px",
-              background: "linear-gradient(to right, transparent, #16213e)",
-            }}
-          />
-        </div>
-
+>
+  <img
+    src={photoUrl}
+    alt={fullName}
+    width={420}
+    height={630}
+    style={{
+      width: "420px",
+      height: "630px",
+      objectFit: "cover",
+      objectPosition: "center top",
+    }}
+  />
+  <div
+    style={{
+      position: "absolute",
+      top: 0,
+      right: 0,
+      width: "120px",
+      height: "630px",
+      background: "linear-gradient(to right, transparent, #16213e)",
+    }}
+  />
+</div>
+)}
         {/* Right — text */}
         <div
           style={{
