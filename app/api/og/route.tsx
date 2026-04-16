@@ -40,16 +40,18 @@ export async function GET(request: NextRequest) {
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={photoUrl}
-            alt={fullName}
-            style={{
-              width: "420px",
-              height: "630px",
-              objectFit: "cover",
-              objectPosition: "center top",
-            }}
-          />
+        <img
+  src={photoUrl}
+  alt={fullName}
+  width={420}
+  height={630}
+  style={{
+    width: "420px",
+    height: "630px",
+    objectFit: "cover",
+    objectPosition: "center top",
+  }}
+/>
           {/* Fade from photo into right panel */}
           <div
             style={{
