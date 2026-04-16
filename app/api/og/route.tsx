@@ -77,13 +77,14 @@ export async function GET(request: NextRequest) {
         >
           {/* Tagline */}
           <div
-            style={{
-              fontSize: "22px",
-              color: "#F8B7BC",
-              letterSpacing: "4px",
-              textTransform: "uppercase",
-              display: "flex",
-            }}
+           style={{
+  fontSize: "22px",
+  color: "#F8B7BC",
+  letterSpacing: "4px",
+  textTransform: "uppercase",
+  fontWeight: "bold",
+  display: "flex",
+}}
           >
             {tagline}
           </div>
