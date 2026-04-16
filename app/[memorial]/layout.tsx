@@ -7,7 +7,7 @@ interface MemorialLayoutProps {
   params: { memorial: string }
 }
 
-export default function MemorialLayout({ children, params }: MemorialLayoutProps) {
+export default function MemorialLayout({ children, params }: any) {
   const memorial = getMemorial(params.memorial)
  if (!memorial) notFound()
 
