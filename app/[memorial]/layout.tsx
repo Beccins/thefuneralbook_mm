@@ -18,7 +18,8 @@ export async function generateMetadata(
     }
   }
 
-  const ogImageUrl = `https://www.thefuneralbook.com.au/api/og?slug=${memorial.slug}`
+  const baseUrl = "https://www.thefuneralbook.com.au"
+  const ogImageUrl = `${baseUrl}/api/og?fullName=${encodeURIComponent(memorial.fullName)}&tagline=${encodeURIComponent(memorial.tagline)}&dob=${encodeURIComponent(memorial.dateOfBirth)}&dod=${encodeURIComponent(memorial.dateOfDeath)}&photo=${encodeURIComponent(memorial.photo)}`
 
   return {
     title: `${memorial.fullName} | The Funeral Book`,
