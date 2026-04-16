@@ -29,7 +29,7 @@ export async function generateMetadata(
       description: memorial.tagline ?? `A memorial for ${memorial.fullName}`,
       images: [
         {
-          url: ogImageUrl,
+      const ogImageUrl = `${baseUrl}/api/og?fullName=${encodeURIComponent(memorial.fullName)}&tagline=${encodeURIComponent(memorial.tagline)}&dob=${encodeURIComponent(memorial.dateOfBirth)}&dod=${encodeURIComponent(memorial.dateOfDeath)}&photo=${encodeURIComponent(baseUrl + memorial.photo)}`
           width: 1200,
           height: 630,
           alt: `Memorial for ${memorial.fullName}`,
