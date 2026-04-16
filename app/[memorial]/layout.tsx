@@ -7,54 +7,9 @@ interface MemorialLayoutProps {
   params: { memorial: string }
 }
 
-export async function generateMetadata(
-  { params }: { params: { memorial: string } }
-) {
+export default function MemorialLayout({ children, params }: MemorialLayoutProps) {
   const memorial = getMemorial(params.memorial)
-  if (!memorial) return {}
-
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "https://thefuneralbook.com.au"
-
-  const ogImageUrl = new URL("/api/og", baseUrl)
-  ogImageUrl.searchParams.set("fullName", memorial.fullName)
-  ogImageUrl.searchParams.set("tagline", memorial.tagline)
-  ogImageUrl.searchParams.set("dob", memorial.dateOfBirth)
-  ogImageUrl.searchParams.set("dod", memorial.dateOfDeath)
-  ogImageUrl.searchParams.set("photo", memorial.photo)
-
-  const title = `${memorial.fullName} - Digital Memorial`
-  const description = `${memorial.tagline} - ${memorial.dateOfBirth} - ${memorial.dateOfDeath}`
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      url: `${baseUrl}/${memorial.slug}`,
-      siteName: "The Funeral Book",
-      images: [
-        {
-          url: ogImageUrl.toString(),
-          width: 1200,
-          height: 630,
-          alt: `Memorial for ${memorial.fullName}`,
-        },
-      ],
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImageUrl.toString()],
-    },
-  }
-}
-
-export default function MemorialLayout({ children, params }: { children: React.ReactNode; params: { memorial: string } }) {
-  const memorial = getMemorial(params.memorial)
- if (!memorial) return notFound()
+  if (!memorial) return notFound()
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
