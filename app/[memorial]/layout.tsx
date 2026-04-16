@@ -52,7 +52,7 @@ export async function generateMetadata(
   }
 }
 
-export default function MemorialLayout({ children, params }: MemorialLayoutProps) {
+export default function MemorialLayout({ children, params }: { children: React.ReactNode; params: { memorial: string } }) {
   const memorial = getMemorial(params.memorial)
   if (!memorial) notFound()
 
