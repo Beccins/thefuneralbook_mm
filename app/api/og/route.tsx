@@ -127,17 +127,13 @@ export async function GET(request: NextRequest) {
           />
 
           {/* Brand */}
-          <div
-            style={{
-              fontSize: "20px",
-              color: "#999999",
-              letterSpacing: "2px",
-              textTransform: "uppercase",
-              display: "flex",
-            }}
-          >
-            The Funeral Book
-          </div>
+         <img
+  src="https://maureen-munns.thefuneralbook.com.au/funeral-book-logo.webp"
+  alt="The Funeral Book"
+  width={120}
+  height={60}
+  style={{ objectFit: "contain" }}
+/>
         </div>
       </div>
     ),
