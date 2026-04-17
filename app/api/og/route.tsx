@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
   const tagline  = searchParams.get("tagline")  ?? "In Loving Memory"
   const dob      = searchParams.get("dob")      ?? ""
   const dod      = searchParams.get("dod")      ?? ""
-  const photo    = searchParams.get("photo")    ?? ""
+  const photo = searchParams.get("photo") || ""
 
   const dates = dob && dod ? `${dob} — ${dod}` : ""
 
@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
         }}
       >
       {/* Left — photo (only if provided) */}
-{photo && (
+{photo.length > 0 && (
 <div
   style={{
     width: "420px",
