@@ -18,7 +18,7 @@ export async function generateMetadata(
     }
   }
 
-  const baseUrl = "https://maureen-munns.thefuneralbook.com.au"
+const baseUrl = `https://${params.memorial}.thefuneralbook.com.au`
   const ogImageUrl = `${baseUrl}/api/og?fullName=${encodeURIComponent(memorial.fullName)}&tagline=${encodeURIComponent(memorial.tagline)}&dob=${encodeURIComponent(memorial.dateOfBirth)}&dod=${encodeURIComponent(memorial.dateOfDeath)}&photo=${encodeURIComponent(baseUrl + memorial.photo)}`
 
   return {
