@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
   let photoData: string | null = null
   if (photo) {
     try {
-      const res = await fetch(photo)
+      const res = await fetch(photo, { headers: { "User-Agent": "vercel-og" } })
       const buf = await res.arrayBuffer()
       const base64 = Buffer.from(buf).toString("base64")
       const mime = res.headers.get("content-type") ?? "image/jpeg"
