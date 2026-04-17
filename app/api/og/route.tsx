@@ -18,9 +18,14 @@ export async function GET(request: NextRequest) {
     try {
       const res = await fetch(photo, { headers: { "User-Agent": "vercel-og" } })
       const buf = await res.arrayBuffer()
-      const base64 = Buffer.from(buf).toString("base64")
-      const mime = res.headers.get("content-type") ?? "image/jpeg"
-      photoData = `data:${mime};base64,${base64}`
+const bytes = new Uint8Array(buf)
+let binary = ""
+for (let i = 0; i < bytes.byteLength; i++) {
+  binary += String.fromCharCode(bytes[i])
+}
+const base64 = btoa(binary)
+const mime = res.headers.get("content-type") ?? "image/jpeg"
+photoData = `data:${mime};base64,${base64}`
     } catch {
       photoData = null
     }
