@@ -128,7 +128,7 @@ export async function GET(request: NextRequest) {
 
           {/* Brand */}
        <img
-  src="https://maureen-munns.thefuneralbook.com.au/bessie_logo_final.png"
+  src="https://gary-beaumont.thefuneralbook.com.au/bessie_logo_final.png"
   alt="The Funeral Book"
   width={300}
   height={150}
