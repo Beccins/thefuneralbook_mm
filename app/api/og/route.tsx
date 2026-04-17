@@ -107,7 +107,7 @@ export async function GET(request: NextRequest) {
             <div
               style={{
                 fontSize: "26px",
-                color: "666666",
+                color: "#666666",
                 letterSpacing: "1px",
                 display: "flex",
               }}
