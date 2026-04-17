@@ -79,7 +79,7 @@ export async function GET(request: NextRequest) {
           <div
            style={{
   fontSize: "22px",
-  color: "#F8B7BC",
+  color: "#e8929a",
   letterSpacing: "4px",
   textTransform: "uppercase",
   fontWeight: "bold",
@@ -130,8 +130,8 @@ export async function GET(request: NextRequest) {
        <img
   src="https://maureen-munns.thefuneralbook.com.au/bessie_logo_final.png"
   alt="The Funeral Book"
-  width={240}
-  height={120}
+  width={300}
+  height={150}
   style={{ objectFit: "contain" }}
 />
         </div>
