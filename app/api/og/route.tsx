@@ -130,8 +130,8 @@ export async function GET(request: NextRequest) {
        <img
   src="https://maureen-munns.thefuneralbook.com.au/bessie_logo_final.png"
   alt="The Funeral Book"
-  width={120}
-  height={60}
+  width={240}
+  height={120}
   style={{ objectFit: "contain" }}
 />
         </div>
