@@ -9,137 +9,47 @@ export async function GET(request: NextRequest) {
   const tagline  = searchParams.get("tagline")  ?? "In Loving Memory"
   const dob      = searchParams.get("dob")      ?? ""
   const dod      = searchParams.get("dod")      ?? ""
-  const photo    = searchParams.get("photo")    || ""
 
   const dates = dob && dod ? `${dob} — ${dod}` : ""
 
+  // Hardcoded test — bypasses all URL logic
+  const testImageUrl = "https://raw.githubusercontent.com/Beccins/thefuneralbook_mm/main/public/GARY_2010.jpg"
+
   let photoSrc: string | null = null
-  if (photo) {
-    try {
-      const res = await fetch(photo)
-      if (res.ok) {
-        const buffer = await res.arrayBuffer()
-        const base64 = Buffer.from(buffer).toString("base64")
-        const mime = res.headers.get("content-type") ?? "image/jpeg"
-        photoSrc = `data:${mime};base64,${base64}`
-      }
-    } catch {
-      photoSrc = null
+  try {
+    const res = await fetch(testImageUrl)
+    console.log("FETCH STATUS:", res.status)
+    console.log("FETCH OK:", res.ok)
+    if (res.ok) {
+      const buffer = await res.arrayBuffer()
+      console.log("BUFFER SIZE:", buffer.byteLength)
+      const base64 = Buffer.from(buffer).toString("base64")
+      const mime = res.headers.get("content-type") ?? "image/jpeg"
+      photoSrc = `data:${mime};base64,${base64}`
+      console.log("PHOTO SET, length:", photoSrc.length)
     }
+  } catch (e) {
+    console.log("FETCH ERROR:", e)
   }
 
   return new ImageResponse(
     (
-      <div
-        style={{
-          width: "1200px",
-          height: "630px",
-          display: "flex",
-          flexDirection: "row",
-          background: "#f9f9f9",
-          fontFamily: "serif",
-        }}
-      >
+      <div style={{ width: "1200px", height: "630px", display: "flex", flexDirection: "row", background: "#f9f9f9", fontFamily: "serif" }}>
         {photoSrc && (
-          <div
-            style={{
-              width: "420px",
-              height: "630px",
-              display: "flex",
-              flexShrink: 0,
-              position: "relative",
-            }}
-          >
-            <img
-              src={photoSrc}
-              alt={fullName}
-              width={420}
-              height={630}
-              style={{
-                width: "420px",
-                height: "630px",
-                objectFit: "cover",
-                objectPosition: "center top",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                right: 0,
-                width: "120px",
-                height: "630px",
-                background: "linear-gradient(to right, transparent, #f9f9f9)",
-              }}
-            />
+          <div style={{ width: "420px", height: "630px", display: "flex", flexShrink: 0, position: "relative" }}>
+            <img src={photoSrc} alt={fullName} width={420} height={630} style={{ width: "420px", height: "630px", objectFit: "cover", objectPosition: "center top" }} />
+            <div style={{ position: "absolute", top: 0, right: 0, width: "120px", height: "630px", background: "linear-gradient(to right, transparent, #f9f9f9)" }} />
           </div>
         )}
-        <div
-          style={{
-            flex: 1,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            padding: "60px 60px 60px 40px",
-            gap: "24px",
-          }}
-        >
-          <div
-            style={{
-              fontSize: "22px",
-              color: "#e8929a",
-              letterSpacing: "4px",
-              textTransform: "uppercase",
-              fontWeight: "bold",
-              display: "flex",
-            }}
-          >
-            {tagline}
-          </div>
-          <div
-            style={{
-              fontSize: "52px",
-              fontWeight: "bold",
-              color: "#1a1a1a",
-              lineHeight: 1.15,
-              display: "flex",
-            }}
-          >
-            {fullName}
-          </div>
-          {dates && (
-            <div
-              style={{
-                fontSize: "26px",
-                color: "#666666",
-                letterSpacing: "1px",
-                display: "flex",
-              }}
-            >
-              {dates}
-            </div>
-          )}
-          <div
-            style={{
-              width: "60px",
-              height: "2px",
-              background: "#F8B7BC",
-              display: "flex",
-            }}
-          />
-          <img
-            src="https://gary-beaumont.thefuneralbook.com.au/bessie_logo_final.png"
-            alt="The Funeral Book"
-            width={300}
-            height={150}
-            style={{ objectFit: "contain" }}
-          />
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "60px 60px 60px 40px", gap: "24px" }}>
+          <div style={{ fontSize: "22px", color: "#e8929a", letterSpacing: "4px", textTransform: "uppercase", fontWeight: "bold", display: "flex" }}>{tagline}</div>
+          <div style={{ fontSize: "52px", fontWeight: "bold", color: "#1a1a1a", lineHeight: 1.15, display: "flex" }}>{fullName}</div>
+          {dates && <div style={{ fontSize: "26px", color: "#666666", letterSpacing: "1px", display: "flex" }}>{dates}</div>}
+          <div style={{ width: "60px", height: "2px", background: "#F8B7BC", display: "flex" }} />
+          <img src="https://raw.githubusercontent.com/Beccins/thefuneralbook_mm/main/public/bessie_logo_final.png" alt="The Funeral Book" width={300} height={150} style={{ objectFit: "contain" }} />
         </div>
       </div>
     ),
-    {
-      width: 1200,
-      height: 630,
-    }
+    { width: 1200, height: 630 }
   )
 }
