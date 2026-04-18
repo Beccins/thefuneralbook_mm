@@ -1,7 +1,7 @@
 import { ImageResponse } from "@vercel/og"
 import { type NextRequest } from "next/server"
 
-export const runtime = "edge"
+export const runtime = "nodejs"
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
@@ -12,6 +12,21 @@ export async function GET(request: NextRequest) {
   const photo    = searchParams.get("photo")    || ""
 
   const dates = dob && dod ? `${dob} — ${dod}` : ""
+
+  let photoSrc: string | null = null
+  if (photo) {
+    try {
+      const res = await fetch(photo)
+      if (res.ok) {
+        const buffer = await res.arrayBuffer()
+        const base64 = Buffer.from(buffer).toString("base64")
+        const mime = res.headers.get("content-type") ?? "image/jpeg"
+        photoSrc = `data:${mime};base64,${base64}`
+      }
+    } catch {
+      photoSrc = null
+    }
+  }
 
   return new ImageResponse(
     (
@@ -25,7 +40,7 @@ export async function GET(request: NextRequest) {
           fontFamily: "serif",
         }}
       >
-        {photo && (
+        {photoSrc && (
           <div
             style={{
               width: "420px",
@@ -36,7 +51,7 @@ export async function GET(request: NextRequest) {
             }}
           >
             <img
-              src={photo}
+              src={photoSrc}
               alt={fullName}
               width={420}
               height={630}
