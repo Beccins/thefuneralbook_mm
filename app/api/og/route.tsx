@@ -9,27 +9,23 @@ export async function GET(request: NextRequest) {
   const tagline  = searchParams.get("tagline")  ?? "In Loving Memory"
   const dob      = searchParams.get("dob")      ?? ""
   const dod      = searchParams.get("dod")      ?? ""
+  const photo    = searchParams.get("photo")    || ""
 
   const dates = dob && dod ? `${dob} — ${dod}` : ""
 
-  // Hardcoded test — bypasses all URL logic
-  const testImageUrl = "https://raw.githubusercontent.com/Beccins/thefuneralbook_mm/main/public/GARY_2010.jpg"
-
   let photoSrc: string | null = null
-  try {
-    const res = await fetch(testImageUrl)
-    console.log("FETCH STATUS:", res.status)
-    console.log("FETCH OK:", res.ok)
-    if (res.ok) {
-      const buffer = await res.arrayBuffer()
-      console.log("BUFFER SIZE:", buffer.byteLength)
-      const base64 = Buffer.from(buffer).toString("base64")
-      const mime = res.headers.get("content-type") ?? "image/jpeg"
-      photoSrc = `data:${mime};base64,${base64}`
-      console.log("PHOTO SET, length:", photoSrc.length)
+  if (photo) {
+    try {
+      const res = await fetch(photo)
+      if (res.ok) {
+        const buffer = await res.arrayBuffer()
+        const base64 = Buffer.from(buffer).toString("base64")
+        const mime = res.headers.get("content-type") ?? "image/jpeg"
+        photoSrc = `data:${mime};base64,${base64}`
+      }
+    } catch {
+      photoSrc = null
     }
-  } catch (e) {
-    console.log("FETCH ERROR:", e)
   }
 
   return new ImageResponse(
@@ -46,7 +42,7 @@ export async function GET(request: NextRequest) {
           <div style={{ fontSize: "52px", fontWeight: "bold", color: "#1a1a1a", lineHeight: 1.15, display: "flex" }}>{fullName}</div>
           {dates && <div style={{ fontSize: "26px", color: "#666666", letterSpacing: "1px", display: "flex" }}>{dates}</div>}
           <div style={{ width: "60px", height: "2px", background: "#F8B7BC", display: "flex" }} />
-          <img src="https://raw.githubusercontent.com/Beccins/thefuneralbook_mm/main/public/bessie_logo_final.png" alt="The Funeral Book" width={300} height={150} style={{ objectFit: "contain" }} />
+          <img src="https://gary-beaumont.thefuneralbook.com.au/bessie_logo_final.png" alt="The Funeral Book" width={300} height={150} style={{ objectFit: "contain" }} />
         </div>
       </div>
     ),
