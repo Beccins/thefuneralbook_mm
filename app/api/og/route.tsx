@@ -13,24 +13,6 @@ export async function GET(request: NextRequest) {
 
   const dates = dob && dod ? `${dob} — ${dod}` : ""
 
-  let photoData: string | null = null
-  if (photo) {
-    try {
-      const res = await fetch(photo, { headers: { "User-Agent": "vercel-og" } })
-      const buf = await res.arrayBuffer()
-const bytes = new Uint8Array(buf)
-let binary = ""
-for (let i = 0; i < bytes.byteLength; i++) {
-  binary += String.fromCharCode(bytes[i])
-}
-const base64 = btoa(binary)
-const mime = res.headers.get("content-type") ?? "image/jpeg"
-photoData = `data:${mime};base64,${base64}`
-    } catch {
-      photoData = null
-    }
-  }
-
   return new ImageResponse(
     (
       <div
@@ -43,7 +25,7 @@ photoData = `data:${mime};base64,${base64}`
           fontFamily: "serif",
         }}
       >
-        {photoData && (
+        {photo && (
           <div
             style={{
               width: "420px",
@@ -54,7 +36,7 @@ photoData = `data:${mime};base64,${base64}`
             }}
           >
             <img
-              src={photoData}
+              src={photo}
               alt={fullName}
               width={420}
               height={630}
