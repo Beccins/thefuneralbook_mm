@@ -6,7 +6,7 @@ export const gary: Memorial = {
   fullName: "Gary Robert Beaumont",
   shortName: "Gary",
   nickname: "Gary",
-  photo: "https://raw.githubusercontent.com/Beccins/thefuneralbook_mm/main/public/GARY_2010.jpg",
+  photo: "/GARY_2010_og.jpg",
   dateOfBirth: "14th January, 1947",
   dateOfDeath: "18th March, 2024",
   tagline: "He loved the Lord, his family, his church, his community, his country and pavlova",
