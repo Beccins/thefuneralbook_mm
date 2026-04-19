@@ -206,10 +206,10 @@ export default function ContactPage() {
                     <h4 className="font-semibold text-foreground mb-2">The Funeral Book</h4>
                     <p className="text-muted-foreground mb-2">
                       <a href="tel:+12175550123" className="text-primary hover:underline">
-                        0200 000 000
+                        0411 649 097
                       </a>
                     </p>
-                    <p className="text-sm text-muted-foreground">Available 24 hours a day, 7 days a week</p>
+                    <p className="text-sm text-muted-foreground">Available during business hours</p>
                   </div>
 
                   <div className="border-t border-border pt-4">
