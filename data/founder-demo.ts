@@ -4,7 +4,7 @@ export const founderDemo = {
   fullName: "Rebecca 'Bec' Munns",
   shortName: "Rebecca",
   nickname: "Bec",
-  photo: "/bec_munns_2024.jpg",
+  photo: "/bec_munns_2024_og.jpg",
   dateOfBirth: "26th August, 1977",
   dateOfDeath: "One Day, Far From Now",
   tagline: "Founder & Creator of The Funeral Book — Remembrance Reimagined",
