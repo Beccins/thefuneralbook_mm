@@ -131,9 +131,9 @@ export const founderDemo = {
 
   // ─── Contact ─────────────────────────────────────────────────────────────────
   contactEmail: "rebecca.munns@thefuneralbook.com",
-  contactPhone: "0200 000 000",
+  contactPhone: "0411 649 097",
   familyContactName: "The Funeral Book Team",
-  familyContactPhone: "0200 000 000",
+  familyContactPhone: "0411 649 097",
   faqDonationsText: "Yes, the family welcomes donations to Bec's chosen charities.",
   faqDressCode: "Come as you are — bright colours and comfortable shoes encouraged.",
 }
