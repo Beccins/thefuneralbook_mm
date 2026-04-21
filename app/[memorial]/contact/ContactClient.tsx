@@ -169,7 +169,7 @@ export function ContactClient({ slug, memorial }: Props) {
                   <p className="text-muted-foreground mb-2">
                     <a href={`tel:${memorial.contactPhone}`} className="text-primary hover:underline">{memorial.contactPhone}</a>
                   </p>
-                  <p className="text-sm text-muted-foreground">Available 24 hours a day, 7 days a week</p>
+                  <p className="text-sm text-muted-foreground">Available during business hours</p>
                 </div>
                 <div className="border-t border-border pt-4">
                   <h4 className="font-semibold text-foreground mb-2">Family Contact</h4>
