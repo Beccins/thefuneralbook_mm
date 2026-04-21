@@ -243,7 +243,7 @@ Even so, it is well with my soul.`,
 
   // ─── Contact ─────────────────────────────────────────────────────────────────
   contactEmail: "rebecca.munns@thefuneralbook.com",
-  contactPhone: "0200 000 000",
+  contactPhone: "0411 649 097",
   familyContactName: "Contact Name",
   familyContactPhone: "0400 000 000",
   faqDonationsText: "Yes, the family welcomes donations to Gary's favorite charities.",
