@@ -69,7 +69,7 @@ export default async function OrderOfServicePage({ params }: Props) {
         </div>
 
         {/* Interactive service program - client component */}
-        <ServiceProgram items={memorial.serviceItems} />
+        <ServiceProgram items={memorial.serviceItems} slug={slug} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card className="bg-card border-border">
