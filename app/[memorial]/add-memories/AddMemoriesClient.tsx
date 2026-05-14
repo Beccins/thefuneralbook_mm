@@ -317,7 +317,7 @@ export function AddMemoriesClient({ slug, memorial }: Props) {
               {memories.map((memory) => (
                 <Card key={memory.id} className="bg-card border-border overflow-hidden cursor-pointer hover:shadow-lg transition-shadow" onClick={() => setExpandedMemory(memory)}>
                   {memory.image_url && (
-                    <div className="relative h-48 w-full">
+                    <div className="relative h-64 w-full">
                       <Image src={memory.image_url} alt={memory.title} fill className="object-cover" />
                     </div>
                   )}
