@@ -273,7 +273,7 @@ export function AddMemoriesClient({ slug, memorial }: Props) {
                   {previewUrl ? (
                     <div className="space-y-4">
                       <div className="relative w-48 h-48 mx-auto">
-                        <Image src={previewUrl} alt="Memory preview" fill className="object-cover object-top rounded-lg" />
+                        <Image src={previewUrl} alt="Memory preview" fill className="object-cover rounded-lg" />
                       </div>
                       <Button type="button" variant="outline" onClick={() => setPreviewUrl("")} className="bg-transparent">Remove Photo</Button>
                     </div>
@@ -318,7 +318,7 @@ export function AddMemoriesClient({ slug, memorial }: Props) {
                 <Card key={memory.id} className="bg-card border-border overflow-hidden cursor-pointer hover:shadow-lg transition-shadow" onClick={() => setExpandedMemory(memory)}>
                   {memory.image_url && (
                     <div className="relative h-48 w-full">
-                      <Image src={memory.image_url} alt={memory.title} fill className="object-cover object-top" />
+                      <Image src={memory.image_url} alt={memory.title} fill className="object-cover" />
                     </div>
                   )}
                   <CardContent className="p-4">
@@ -369,7 +369,7 @@ export function AddMemoriesClient({ slug, memorial }: Props) {
             <div className="p-6 space-y-6">
               {expandedMemory.image_url && (
                 <div className="relative h-64 rounded-lg overflow-hidden">
-                  <Image src={expandedMemory.image_url} alt={expandedMemory.title} fill className="object-cover object-top" />
+                  <Image src={expandedMemory.image_url} alt={expandedMemory.title} fill className="object-cover" />
                 </div>
               )}
               <div>
