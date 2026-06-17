@@ -82,17 +82,15 @@ function ContributionItem({ item, slug }: { item: ServiceItem; slug?: string }) 
           {/* Action buttons */}
           <div className="flex flex-wrap gap-2 mt-2">
             {item.googleDocUrl && (
-              <a href={item.googleDocUrl} target="_blank" rel="noopener noreferrer">
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="h-7 text-xs gap-1"
-                >
-                  <ExternalLink className="w-3 h-3" />
-                  Open Draft
-                </Button>
-              </a>
-            )}
+  <div className="mt-3 w-full">
+    <iframe
+      src={item.googleDocUrl}
+      className="w-full rounded-lg border border-border"
+      style={{ height: "400px" }}
+      title={`${item.title} — collaborative draft`}
+    />
+  </div>
+)}
 
             {isDraft && (
               <Button
