@@ -82,7 +82,6 @@ googleDocUrl: "https://docs.google.com/document/d/1sqv95MDa0w0ijgzte-RSF7fVoukXo
 Spring inside with tales of breeding and new,
 Days on the rise-tide of daylight and becoming lost.
 Here begin forgets of a woman younger.`,
-  googleDocUrl: "https://docs.google.com/",
 },
     {
       id: "song-2",
