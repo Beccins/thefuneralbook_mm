@@ -68,7 +68,7 @@ export const founderDemo = {
   content: `Grateful. This is how we feel today at the thought of having had the time we did with her. She leaves a huge emptiness in the hearts of all of us who loved her, many who were her friends, and even more who just had a glimmer of her through our family.
 
 She lit up any room when she entered, and many of her friends here today would agree that when she smiled, it was as if pure joy emanated from her beautiful eyes and face... and she was always smiling...`,
-  googleDocUrl: "https://docs.google.com/",
+googleDocUrl: "https://docs.google.com/document/d/e/2PACX-1vTc5ZFmEQDfwym7iGKrGOsxHVzltngAYx4hse6WfeW3mTyGGH0LYt24F7arGZQzwoktxzW6mem4a4Tj/pub?embedded=true",
 },
 {
   id: "contribution-poem",
