@@ -81,7 +81,7 @@ function ContributionItem({ item, slug }: { item: ServiceItem; slug?: string }) 
 
           {/* Action buttons */}
           <div className="flex flex-wrap gap-2 mt-2">
-            {item.googleDocUrl && (
+        {item.googleDocUrl && (
   <div className="mt-3 w-full">
     <iframe
       src={item.googleDocUrl}
