@@ -45,7 +45,7 @@ export function DonationsClient({ slug, memorial }: Props) {
           <CardHeader className="text-center">
             <CardTitle className="text-2xl text-foreground mb-2 flex items-center justify-center gap-2">
               <Heart className="w-6 h-6 text-primary" />
-              Honor {memorial.shortName}'s Memory
+              Legacy
             </CardTitle>
             <p className="text-muted-foreground text-pretty">{memorial.donationsIntro}</p>
           </CardHeader>
