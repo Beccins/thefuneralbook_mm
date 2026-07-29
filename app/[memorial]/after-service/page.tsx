@@ -32,7 +32,7 @@ export default async function AfterServicePage({ params }: Props) {
         <Card className="bg-card border-border">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl text-foreground mb-2">
-              Reception & Gathering Details
+              After Service Information
             </CardTitle>
             <p className="text-muted-foreground text-pretty">
               {memorial.receptionIntro}
