@@ -219,7 +219,7 @@ export function AddMemoriesClient({ slug, memorial }: Props) {
           <CardHeader className="text-center">
             <CardTitle className="text-2xl text-foreground mb-2 flex items-center justify-center gap-2">
               <Camera className="w-6 h-6 text-primary" />
-              Celebrate {memorial.shortName}'s Life
+              Add Memories
             </CardTitle>
             <p className="text-muted-foreground text-pretty">{memorial.memoriesIntro}</p>
           </CardHeader>
