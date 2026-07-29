@@ -17,7 +17,7 @@ export const founderDemo = {
   footerTagline: "Remembrance Reimagined • The Funeral Book",
 
   // ─── Order of Service ────────────────────────────────────────────────────────
-  serviceTitle: "Celebration of Life",
+  serviceTitle: "Order of Service",
   serviceDate: "A Sunny Sydney Morning, One Day Far From Now",
   serviceTime: "10:00 AM",
   serviceVenueName: "Cabarita Park Amphitheatre",
