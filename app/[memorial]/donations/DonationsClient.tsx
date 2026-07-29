@@ -139,7 +139,7 @@ export function DonationsClient({ slug, memorial }: Props) {
           </Link>
           <Link href={`/${slug}/add-memories`}>
             <Button className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground">
-              Share Memories
+              Add Memories
             </Button>
           </Link>
         </div>
