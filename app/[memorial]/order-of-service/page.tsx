@@ -109,7 +109,7 @@ export default async function OrderOfServicePage({ params }: Props) {
           </Link>
           <Link href={`/${slug}/add-memories`}>
             <Button variant="outline" className="w-full sm:w-auto bg-transparent">
-              Share Memories
+              Add Memories
             </Button>
           </Link>
         </div>
