@@ -75,7 +75,7 @@ export function ContactClient({ slug, memorial }: Props) {
 
         <Card className="bg-card border-border">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl text-foreground mb-2">We're Here to Help</CardTitle>
+            <CardTitle className="text-2xl text-foreground mb-2">Need Assistance</CardTitle>
             <p className="text-muted-foreground text-pretty">
               Our compassionate team is available 24/7 to assist you during this difficult time. Please don't
               hesitate to reach out with any questions or concerns.
