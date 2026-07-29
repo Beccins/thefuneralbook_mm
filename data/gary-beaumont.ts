@@ -19,7 +19,7 @@ export const gary: Memorial = {
   footerTagline: "Remembrance Reimagined • The Funeral Book",
 
   // ─── Order of Service ────────────────────────────────────────────────────────
-  serviceTitle: "Celebration of Life",
+  serviceTitle: "Order of Service",
   serviceDate: "Tuesday, 26th of March, 2024",
   serviceTime: "11:00 AM",
   serviceVenueName: "Hills Community Church of the Nazarene Kenthurst",
