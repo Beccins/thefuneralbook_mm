@@ -92,7 +92,7 @@ export function LeaveMessageClient({ slug, memorial }: Props) {
 
         <Card className="bg-card border-border">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl text-foreground mb-2">Share Your Memories</CardTitle>
+            <CardTitle className="text-2xl text-foreground mb-2">Leave a Message</CardTitle>
             <p className="text-muted-foreground text-pretty">
               Your words of comfort and cherished memories mean so much to the family during this difficult time.
               Please share your thoughts about {memorial.shortName} and how they touched your life.
