@@ -13,7 +13,11 @@ export default async function RootPage() {
   if (hostname.startsWith("gary-beaumont")) {
     redirect("/gary-beaumont")
   }
+  
+  if (hostname.startsWith("founder-demo")) {
+    redirect("/founder-demo")
+  }
 
   // Default — show a simple landing page
   redirect("/maureen-munns")
-}
+  }
