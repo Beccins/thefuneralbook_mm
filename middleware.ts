@@ -7,12 +7,14 @@ export function middleware(request: NextRequest) {
 
   const parts = host.split('.')
 
-  // Only act on *.thefuneralbook.com.au (exactly 4 parts)
-  const isMemorialSubdomain =
-    parts.length === 4 &&
-    parts[1] === 'thefuneralbook' &&
-    parts[2] === 'com' &&
-    parts[3] === 'au'
+  // Act on *.thefuneralbook.com.au OR *.funeralbook.com.au (exactly 4 parts)
+// Exclude "www" — that's the main site homepage, not a memorial
+const isMemorialSubdomain =
+  parts.length === 4 &&
+  (parts[1] === 'thefuneralbook' || parts[1] === 'funeralbook') &&
+  parts[2] === 'com' &&
+  parts[3] === 'au' &&
+  parts[0] !== 'www'
 
   if (isMemorialSubdomain) {
     const slug = parts[0]
