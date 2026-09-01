@@ -180,8 +180,9 @@ Than when we first begun.`,
   { url: "/thelma_bob_kids.png", caption: "Thelma with Family" },
   { url: "/thelma_table_tennis.jpg", caption: "Thelma Playing Table Tennis" },
 ],
-  memoriesIntro:
-    "Share your favorite photos and memories of Thelma. These precious moments will create a lasting tribute to her beautiful life and the joy she brought to so many people."
+    memoriesIntro:
+    "Share your favorite photos and memories of Thelma. These precious moments will create a lasting tribute to her beautiful life and the joy she brought to so many people.",
+  memoriesSubject: "Thelma",
 
   // ─── Donations ───────────────────────────────────────────────────────────────
   donationsIntro:
