@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { headers } from "next/headers"
 import { getMemorial } from "@/lib/memorials"
 
 type Props = {
@@ -18,7 +19,9 @@ export async function generateMetadata(
     }
   }
 
-  const baseUrl = `https://${params.memorial}.thefuneralbook.com.au`
+ const headersList = await headers()
+const host = headersList.get("host") ?? `${params.memorial}.funeralbook.com.au`
+const baseUrl = `https://${host}`
   const photoUrl = memorial.photo.startsWith("http") ? memorial.photo : baseUrl + memorial.photo
   const ogImageUrl = `${baseUrl}/api/og?fullName=${encodeURIComponent(memorial.fullName)}&tagline=${encodeURIComponent(memorial.tagline)}&dob=${encodeURIComponent(memorial.dateOfBirth)}&dod=${encodeURIComponent(memorial.dateOfDeath)}&photo=${encodeURIComponent(photoUrl)}`
 
