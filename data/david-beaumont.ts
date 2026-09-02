@@ -27,106 +27,32 @@ export const thelma: Memorial = {
   serviceVenueMapUrl: "TODO CONFIRM",
   officiant: "TODO CONFIRM",
   
-  serviceItems: [
-      {
-      id: "introduction",
-      title: "Words of Introduction",
-      subtitle: "Rev Kel Willis",
+   serviceItems: [
+    {
+      id: "prelude",
+      title: "Prelude",
+      subtitle: "The Rose — Bette Midler",
       time: "",
       type: "general" as const,
     },
     {
-      id: "hymn-1",
+      id: "welcome",
+      title: "Welcome",
+      subtitle: "",
+      time: "",
+      type: "general" as const,
+    },
+    {
+      id: "prayer-1",
+      title: "Prayer",
+      subtitle: "",
+      time: "",
+      type: "general" as const,
+    },
+    {
+      id: "hymn-amazing-grace",
       title: "Hymn",
-      subtitle: "How Great Thou Art",
-      time: "",
-      type: "hymn" as const,
-      content: `O Lord my God, when I in awesome wonder
-Consider all the works thy hands have made.
-I see the stars, I hear the rolling thunder
-Thy power throughout the universe displayed.
-
-Refrain:
-Then sings my soul, my Saviour God to thee
-How great thou art, how great thou art!
-Then sings my soul, my Saviour God to thee
-How great thou art, how great thou art!
-
-When through the woods and forest glades I wander
-And hear the birds sing sweetly in the trees;
-When I look down from lofty mountain grandeur
-And hear the brook and feel the gentle breeze.
-Refrain
-
-And when I think that God, His Son not sparing,
-Sent Him to die, I scarce can take it in;
-That on the cross, my burden gladly bearing
-He bled and died to take away my sin.
-Refrain
-
-When Christ shall come with shout of acclamation
-And take me home, what joy shall fill my heart!
-Then I shall bow in humble adoration
-And there proclaim, my God, how great thou art!
-Refrain`,
-    },
-        {
-      id: "prayer-thanksgiving",
-      title: "Prayer of Thanksgiving",
-      subtitle: "Pastor Dilan Jayaskinge",
-      time: "",
-      type: "general" as const,
-    },
-    {
-      id: "bible-reading",
-      title: "Bible Reading",
-      subtitle: "Amanda Hogan & Jenna-Gaye Hollis — 1 Corinthians 13:4-13",
-      time: "",
-      type: "prayer" as const,
-      content: `Love is patient, love is kind. It does not envy, it does not boast, it is not proud.
-It is not rude, it is not self-seeking, it is not easily angered, it keeps no record of wrongs.
-Love does not delight in evil but rejoices with the truth.
-It always protects, always trusts, always hopes, always perseveres.
-Love never fails. But where there are prophecies,they will cease; where there are
-tongues, they will be stilled; where there is knowledge, it will pass away
-For we know in part and we prophesy in part, but when perfection comes, the imperfect disappears.
-When I was a child, I talked like a child, I thought like a child, I reasoned like a child. When I became a man, I put childish ways behind me.
-Now we see but a poor reflection as in a mirror; then we shall see face to face. Now I know in part; then I shall know fully, even as I am fully known.
-And now these three remain: faith, hope and love. But the greatest of these is love.`,
-          },
-    
-        {
-      id: "eulogy",
-      title: "Eulogy",
-      subtitle: "Gary Beaumont — Symbols of Thelma's Life",
-      time: "",
-      type: "general" as const,
-    },
-    {
-      id: "music",
-      title: "Music",
-      subtitle: "Allan Peacock",
-      time: "",
-      type: "general" as const,
-    },
-        {
-      id: "message",
-      title: "Message",
-      subtitle: "Rev. Kel Willis",
-      time: "",
-      type: "general" as const,
-    },
-    {
-      id: "poem",
-      title: "Poem",
-      subtitle: "Tony Aduckiewicz",
-      time: "",
-      type: "tribute" as const,
-    },
-        {
-      id: "hymn-2",
-      title: "Hymn",
-      subtitle: "Amazing Grace — Tara Dobson",
+      subtitle: "Amazing Grace",
       time: "",
       type: "hymn" as const,
       content: `Amazing grace! How sweet the sound
@@ -154,10 +80,66 @@ Bright shining as the sun,
 We've no less days to sing God's praise
 Than when we first begun.`,
     },
-        {
-      id: "closing",
-      title: "Closing Words",
-      subtitle: "Rev Kel Willis",
+    {
+      id: "eulogy",
+      title: "Eulogy",
+      subtitle: "Tributes to a Legend",
+      time: "",
+      type: "general" as const,
+    },
+    {
+      id: "life-in-pictures",
+      title: "David's Life in Pictures",
+      subtitle: "",
+      time: "",
+      type: "general" as const,
+    },
+    {
+      id: "bible-reading",
+      title: "Bible Reading",
+      subtitle: "John 11:17–44 (KJV)",
+      content: `Then when Jesus came, he found that he had lain in the grave four days already. Now Bethany was nigh unto Jerusalem, about fifteen furlongs off: And many of the Jews came to Martha and Mary, to comfort them concerning their brother.
+
+Then Martha, as soon as she heard that Jesus was coming, went and met him: but Mary sat still in the house. Then said Martha unto Jesus, Lord, if thou hadst been here, my brother had not died. But I know, that even now, whatsoever thou wilt ask of God, God will give it thee.
+
+Jesus saith unto her, Thy brother shall rise again. Martha saith unto him, I know that he shall rise again in the resurrection at the last day. Jesus said unto her, I am the resurrection, and the life: he that believeth in me, though he were dead, yet shall he live: And whosoever liveth and believeth in me shall never die. Believest thou this?
+
+She saith unto him, Yea, Lord: I believe that thou art the Christ, the Son of God, which should come into the world.
+
+And when she had so said, she went her way, and called Mary her sister secretly, saying, The Master is come, and calleth for thee. As soon as she heard that, she arose quickly, and came unto him. Now Jesus was not yet come into the town, but was in that place where Martha met him. The Jews then which were with her in the house, and comforted her, when they saw Mary, that she rose up hastily and went out, followed her, saying, She goeth unto the grave to weep there.
+
+Then when Mary was come where Jesus was, and saw him, she fell down at his feet, saying unto him, Lord, if thou hadst been here, my brother had not died. When Jesus therefore saw her weeping, and the Jews also weeping which came with her, he groaned in the spirit, and was troubled. And said, Where have ye laid him? They said unto him, Lord, come and see.
+
+Jesus wept.
+
+Then said the Jews, Behold how he loved him! And some of them said, Could not this man, which opened the eyes of the blind, have caused that even this man should not have died?
+
+Jesus therefore again groaning in himself cometh to the grave. It was a cave, and a stone lay upon it. Jesus said, Take ye away the stone. Martha, the sister of him that was dead, saith unto him, Lord, by this time he stinketh: for he hath been dead four days. Jesus saith unto her, Said I not unto thee, that, if thou wouldest believe, thou shouldest see the glory of God?
+
+Then they took away the stone from the place where the dead was laid. And Jesus lifted up his eyes, and said, Father, I thank thee that thou hast heard me. And I knew that thou hearest me always: but because of the people which stand by I said it, that they may believe that thou hast sent me. And when he thus had spoken, he cried with a loud voice, Lazarus, come forth.
+
+And he that was dead came forth, bound hand and foot with graveclothes: and his face was bound about with a napkin. Jesus saith unto them, Loose him, and let him go.`,
+      time: "",
+      type: "prayer" as const,
+    },
+    {
+      id: "address",
+      title: "Address",
+      subtitle: "",
+      time: "",
+      type: "general" as const,
+    },
+    {
+      id: "prayer-2",
+      title: "Prayer",
+      subtitle: "",
+      time: "",
+      type: "general" as const,
+    },
+    {
+      id: "committal",
+      title: "Committal",
+      subtitle: "My Way — Frank Sinatra",
       time: "",
       type: "general" as const,
     },
