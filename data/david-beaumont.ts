@@ -200,7 +200,7 @@ And he that was dead came forth, bound hand and foot with graveclothes: and his 
   contactPhone: "0411 649 097",
   familyContactName: "Jennifer Aduckiewicz",
   familyContactPhone: "0408 291 942",
-  faqDonationsText: "Yes, the family welcomes donations to Thelma's favorite charities.",
+  faqDonationsText: "Yes, the family welcomes donations to David's favorite charities.",
   faqDressCode:
     "Business casual or semi-formal attire is appropriate. Bright colors are encouraged, so please don't feel limited to traditional black attire.",
-}
+  }
