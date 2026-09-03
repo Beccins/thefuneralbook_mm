@@ -159,16 +159,19 @@ And he that was dead came forth, bound hand and foot with graveclothes: and his 
   dressCode:
     "Business casual or semi-formal attire is appropriate. Happy bright colors are encouraged, so please don't feel limited to traditional black.",
 
-  // ─── Add Memories carousel ───────────────────────────────────────────────────
- carouselPhotos: [
-  { url: "/thelma_and_bob_seaside.jpg", caption: "Thelma & Bob" },
-  { url: "/thelma_and_bob_wedding_guests.jpg", caption: "Thelma & Bob's Wedding" },
-  { url: "/thelma_bob_kids.png", caption: "Thelma with Family" },
-  { url: "/thelma_table_tennis.jpg", caption: "Thelma Playing Table Tennis" },
-],
-    memoriesIntro:
-    "Share your favorite photos and memories of Thelma. These precious moments will create a lasting tribute to her beautiful life and the joy she brought to so many people.",
-  memoriesSubject: "Thelma",
+    // ─── Add Memories carousel ───────────────────────────────────────────────────
+  carouselPhotos: [
+    { url: "/david-beaumont/david-beaumont_young.jpeg", caption: "David as a young man" },
+    { url: "/david-beaumont/david-beaumont_glennys_wedding.jpeg", caption: "David & Glennys's Wedding" },
+    { url: "/david-beaumont/david-beaumont_family.jpeg", caption: "David with Family" },
+    { url: "/david-beaumont/david-beaumont_john.jpeg", caption: "David with his son, John" },
+    { url: "/david-beaumont/david-beaumont_michelle.jpeg", caption: "David with his daughter, Michelle" },
+    { url: "/david-beaumont/david-beaumont_tabletennis.jpeg", caption: "David Playing Table Tennis" },
+    { url: "/david-beaumont/david-beaumont_mum_leonie.jpeg", caption: "David and Friends" },
+  ],
+  memoriesIntro:
+    "Share your favourite photos and memories of David. Table tennis was in his blood — a passion the whole family still shares — and these moments capture the man who loved his family, his sport, and doing things his way.",
+  memoriesSubject: "David",
 
   // ─── Donations ───────────────────────────────────────────────────────────────
   donationsIntro:
