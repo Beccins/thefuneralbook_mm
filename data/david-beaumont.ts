@@ -162,7 +162,7 @@ And he that was dead came forth, bound hand and foot with graveclothes: and his 
     // ─── Add Memories carousel ───────────────────────────────────────────────────
   carouselPhotos: [
     { url: "/david-beaumont/david-beaumont_young.jpeg", caption: "David as a young man" },
-    { url: "/david-beaumont/david-beaumont_glennys_wedding.jpeg", caption: "David & Glennys's Wedding" },
+    { url: "/david-beaumont/david-beaumont_glenys_wedding.jpeg", caption: "David & Glenys's Wedding" },
     { url: "/david-beaumont/david-beaumont_family.jpeg", caption: "David with Family" },
     { url: "/david-beaumont/david-beaumont_john.jpeg", caption: "David with his son, John" },
     { url: "/david-beaumont/david-beaumont_michelle.jpeg", caption: "David with his daughter, Michelle" },
