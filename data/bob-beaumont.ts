@@ -20,11 +20,11 @@ export const bob: Memorial = {
 
   // ─── Order of Service ────────────────────────────────────────────────────────
   serviceTitle: "Order of Service",
-  serviceDate: "TODO CONFIRM",
-  serviceTime: "TODO CONFIRM",
-  serviceVenueName: "TODO CONFIRM",
-  serviceVenueAddress: "TODO CONFIRM",
-  serviceVenueMapUrl: "TODO CONFIRM",
+  serviceDate: "Wednesday, 5th November, 2014",
+  serviceTime: "1:30pm",
+  serviceVenueName: "Burwood Baptist Church",
+  serviceVenueAddress: "Conder Street, Burwood, NSW",
+  serviceVenueMapUrl: "https://www.google.com/maps/search/?api=1&query=Baptist+Church+Conder+Street+Burwood+NSW",
   officiant: "Pastor Dilan Jayaskinge",
 
   serviceItems: [
@@ -101,7 +101,7 @@ And now abideth faith, hope, charity, these three; but the greatest of these is 
     {
       id: "music",
       title: "Music",
-      subtitle: "Issabella & Sam Hogan — Fields of Gold",
+      subtitle: "Isabella & Sam Hogan — Fields of Gold",
       time: "",
       type: "general" as const,
     },
@@ -191,7 +191,7 @@ My dwelling place shall be.`,
   intermentDetail:
     "At the conclusion of the service the cortege will proceed to Rookwood Cemetery.",
   intermentLocation: "Rookwood Cemetery",
-  dressCode: "TODO CONFIRM",
+  dressCode:  "Business casual or semi-formal attire is appropriate. Happy bright colors are encouraged, so please don't feel limited to traditional black.",
 
   // ─── Add Memories carousel ───────────────────────────────────────────────────
   carouselPhotos: [
@@ -206,16 +206,26 @@ My dwelling place shall be.`,
     "Share your favourite photos and memories of Bob. These moments capture a life full of love, laughter, and family.",
   memoriesSubject: "Bob",
 
-  // ─── Donations ───────────────────────────────────────────────────────────────
-  donationsIntro: "TODO CONFIRM — in lieu of flowers, does the family have preferred charities for Bob?",
-  donationsShareText: "TODO CONFIRM",
-  charities: [],
+    // ─── Donations ───────────────────────────────────────────────────────────────
+  donationsIntro:
+    "In lieu of flowers, the family requests donations be made to the Cancer Council New South Wales.",
+  donationsShareText:
+    "Honor Bob's memory by making a donation to the Cancer Council New South Wales.",
+  charities: [
+    {
+      id: "cancer-council-nsw",
+      name: "Cancer Council New South Wales",
+      description: "Funds life-saving cancer research, education, and support services for people affected by cancer in NSW. Phone: 1300 780 113.",
+      url: "https://www.cancercouncil.com.au/donate/",
+      logo: "/cancer-council-logo-new.gif",
+    },
+  ],
 
   // ─── Contact ─────────────────────────────────────────────────────────────────
   contactEmail: "rebecca.munns@thefuneralbook.com",
   contactPhone: "0411 649 097",
   familyContactName: "Jennifer Aduckiewicz",
   familyContactPhone: "0408 291 942",
-  faqDonationsText: "TODO CONFIRM",
-  faqDressCode: "TODO CONFIRM",
+  faqDonationsText: "Yes, the family welcomes donations to the Cancer Council New South Wales.",
+  faqDressCode: "Business casual or semi-formal attire is appropriate. Bright colors are encouraged, so please don't feel limited to traditional black attire.",
 }
