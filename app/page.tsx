@@ -14,6 +14,10 @@ export default async function RootPage() {
     redirect("/gary-beaumont")
   }
   
+  if (hostname.startsWith("bob-beaumont")) {
+    redirect("/bob-beaumont")
+  }
+  
   if (hostname.startsWith("founder-demo")) {
     redirect("/founder-demo")
   }
