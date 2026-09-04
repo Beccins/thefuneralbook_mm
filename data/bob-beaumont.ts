@@ -143,16 +143,11 @@ Wherefore comfort one another with these words.`,
 
 Jennifer and I met in 74
 And it wasn't long before we were sure
-We had started to plan our future life
 That we had the beginnings of something more
 Than a couple of turns around the dance floor.
 
-Surprisingly, quite often, it was nearby the green
-Other times it simply refused to be seen
-But we'd find it - though it was sometimes strange
-That along the way, its number had changed.
-
 We had started to plan our future life
+We'd get married and live as husband and wife
 In the meantime, we agreed, that we couldn't see
 Why Jennifer shouldn't move in with me.
 
@@ -166,6 +161,29 @@ Clearly in his eyes we'd done the wrong thing
 And he'd put an end to our unmarried fling
 We drove back that night like lambs to the slaughter
 But I had the last laugh - I married his daughter.
+
+
+ACCEPTANCE
+
+He accepted his lot - without much to-do
+No point in complaining - he'd find a way through
+And I can't think of a better example to source
+Than the way he'd play golf at the local course.
+
+To follow the ball, you need eyes like a cat
+But Bob was pretty well blind as a bat
+So when it came time to drive off the tee
+Behind him stood Thelma his four kids and me.
+
+It was our job to make sure the ball didn't stray
+As a mighty thwack sent the pill on its way
+And six pairs of eyes, but not Bob's, gave their all
+In the hope of keeping an eye on the ball
+
+Surprisingly, quite often, it was nearby the green
+Other times it simply refused to be seen
+But we'd find it - though it was sometimes strange
+That along the way, its number had changed.
 
 FUN
 
@@ -182,29 +200,12 @@ The way he took tricks would make the girls wail.
 The girls winged, they whined, they grumbled and swore
 For delicate ladies, their language was poor
 But at the end of the night, it was all in the score
-With their blood all over the Kitchen floor.
+With their blood all over the kitchen floor.
 
 Bob, was descended from good solid folk
 A genuine example of a fair-dinkum bloke
 He could build a tin shed, or roll up a smoke
 Worked long and hard and loved a good joke.
-
-ACCEPTANCE
-
-He accepted his lot - without much to-do
-No point in complaining - he'd find a way through
-And I can't think of a better example to source
-Than the way he'd play golf at the local course.
-
-To follow the ball, you need eyes like a cat
-But Bob was pretty well blind as a bat
-So when it came time to drive off the tee
-Behind him stood Thelma his four kids and me.
-
-It was our job to make sure the ball didn't stray
-As a mighty thwack sent the pill on its way
-And I can't think of a better example to source
-Than the way he'd play golf at the local course.
 
 Not one to stress and not often tense
 A laconic Australian with great common sense
