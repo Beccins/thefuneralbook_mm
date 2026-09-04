@@ -275,7 +275,7 @@ My dwelling place shall be.`,
   carouselPhotos: [
     { url: "/bob-beaumont/bob-beaumont_og.jpeg", caption: "Bob" },
     { url: "/bob-beaumont/bob-beaumont_thelma_young.jpg", caption: "Bob & Thelma" },
-    { url: "/bob-beaumont/bob-beaumont_thelma___holiday.jpg", caption: "Bob & Thelma on Holiday" },
+    { url: "/bob-beaumont/bob-beaumont_thelma_holiday.jpg", caption: "Bob & Thelma on Holiday" },
     { url: "/bob-beaumont/bob-beaumont_family.jpeg", caption: "Bob with Family" },
     { url: "/bob-beaumont/bob-beaumont_brother.jpeg", caption: "Bob with his Brother" },
     { url: "/bob-beaumont/bob-beaumont_thelma_kids_and_partners.jpg", caption: "Bob & Thelma with Kids and Partners" },
