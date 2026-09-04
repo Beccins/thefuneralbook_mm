@@ -9,7 +9,7 @@ export const bob: Memorial = {
   photo: "/bob-beaumont/bob-beaumont_og.jpeg",
   dateOfBirth: "25th November, 1921",
   dateOfDeath: "28th October, 2014",
-  tagline: "TODO CONFIRM — a life well lived, loved by his family",
+  tagline: "A man of integrity, acceptance, and fun — loved his family, his cards, and his table tennis",
 
   // ─── Branding ────────────────────────────────────────────────────────────────
   logos: [
@@ -133,12 +133,90 @@ Wherefore comfort one another with these words.`,
       time: "",
       type: "general" as const,
     },
-    {
+       {
       id: "poem",
       title: "Poem",
-      subtitle: "Tony Aduckiewicz",
+      subtitle: "Tony Aduckiewicz — Vale: Bob Beaumont, A Man of Integrity, Acceptance and Fun",
       time: "",
       type: "tribute" as const,
+      content: `INTEGRITY
+
+Jennifer and I met in 74
+And it wasn't long before we were sure
+We had started to plan our future life
+That we had the beginnings of something more
+Than a couple of turns around the dance floor.
+
+Surprisingly, quite often, it was nearby the green
+Other times it simply refused to be seen
+But we'd find it - though it was sometimes strange
+That along the way, its number had changed.
+
+We had started to plan our future life
+In the meantime, we agreed, that we couldn't see
+Why Jennifer shouldn't move in with me.
+
+So we set up together and life was a ball
+Until that night of the dreaded phone call
+Hi Tony, It's Bob - is Jennifer there
+Yes she's here, I'll just go and get her.
+No need - I'd like you to bring her back home.
+
+Clearly in his eyes we'd done the wrong thing
+And he'd put an end to our unmarried fling
+We drove back that night like lambs to the slaughter
+But I had the last laugh - I married his daughter.
+
+FUN
+
+Cards were his weakness, he just loved to play
+A good game of cards quite completed his day.
+I was Bob's partner, and Jennifer had Thel.
+We'd play 4 hand canasta and sometimes "Oh Hell"
+
+His skill at cards was simply quite rare
+He played them with courage and a great deal of flair
+With a twinkle in his eye and a sting in his tail
+The way he took tricks would make the girls wail.
+
+The girls winged, they whined, they grumbled and swore
+For delicate ladies, their language was poor
+But at the end of the night, it was all in the score
+With their blood all over the Kitchen floor.
+
+Bob, was descended from good solid folk
+A genuine example of a fair-dinkum bloke
+He could build a tin shed, or roll up a smoke
+Worked long and hard and loved a good joke.
+
+ACCEPTANCE
+
+He accepted his lot - without much to-do
+No point in complaining - he'd find a way through
+And I can't think of a better example to source
+Than the way he'd play golf at the local course.
+
+To follow the ball, you need eyes like a cat
+But Bob was pretty well blind as a bat
+So when it came time to drive off the tee
+Behind him stood Thelma his four kids and me.
+
+It was our job to make sure the ball didn't stray
+As a mighty thwack sent the pill on its way
+And I can't think of a better example to source
+Than the way he'd play golf at the local course.
+
+Not one to stress and not often tense
+A laconic Australian with great common sense
+Gained by living through ninety two years
+And possessing a pair of remarkable ears.
+
+So Yes! Shed a tear - and then crack a smile
+Because Bob was with us, a good solid while
+And it was he who decided to call it a day
+And quietly, without fuss, to go on his way.
+
+Bon Voyage Bob`,
     },
     {
       id: "hymn-2",
