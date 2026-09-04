@@ -178,7 +178,7 @@ function InteractiveServiceItem({ item, slug }: { item: ServiceItem; slug?: stri
     }
   }
 
-  const canExpand = (item.type === "hymn" || item.type === "prayer") && item.content
+  const canExpand = (item.type === "hymn" || item.type === "prayer" || item.type === "tribute") && item.content
   const canPlay = (item.type === "tribute" && item.audioUrl) || (item.type === "hymn" && item.spotifyId)
 
   return (
