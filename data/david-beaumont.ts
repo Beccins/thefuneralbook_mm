@@ -1,6 +1,6 @@
 import type { Memorial } from "./maureen-munns"
 
-export const thelma: Memorial = {
+export const david: Memorial = {
   // ─── Identity ────────────────────────────────────────────────────────────────
   slug: "david-beaumont",
   fullName: "David John Beaumont",
